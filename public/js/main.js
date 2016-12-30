@@ -41,6 +41,8 @@ $(function ()
 
 	function getWikiInfo(query){
 			$.getJSON("./functions.php?search="+query, function(result){
+				console.log('result',result);
+				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			      $("#wikiInfo").html(compiledTemplate(result));
