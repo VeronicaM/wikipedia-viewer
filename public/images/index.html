@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Quote Generator">
+    <meta name="author" content="Veronica Mihai">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+ 
+    <title>Quotes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="v/css/bootstrap.min.css" rel="stylesheet">
+    <link href="v/css/cover.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
+  </head>
+
+  <body  class="loading" onload="getQuoteData()">
+  <div class="container">
+    <div class="background-image toggle-image first-image show"></div>
+    <div class="background-image toggle-image second-image"></div>
+    <div class="background-image toggle-image third-image"></div>
+    <div class="background-image toggle-image fourth-image"></div>
+    <div class="background-image toggle-image fifth-image"></div>
+    <div class="background-image toggle-image sixth-image"></div>
+   </div> 
+    <div  class="site-wrapper hideOnLoad">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="inner cover">
+            <div class="header"> <h1 class="cover-heading"></h1>  <a 
+              href="#"
+              id="twitter"> <i  class="fa fa-twitter" aria-hidden="true"></i></a></div>
+
+            <p class="lead quoteBody"></p>
+            <p class="lead">
+              <a id="next" href="#" class="btn btn-lg btn-secondary">Next</a>
+             
+            </p>
+          </div>
+			 <div class="mastfoot">
+	            <div class="inner">
+	              <p>Made with &#9835; | Copyright © 2016</p>
+	            </div>
+			  </div>
+        </div>
+
+      </div>
+    
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="v/js/jquery-3.1.1.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+      <script src="https://use.fontawesome.com/293ac5c965.js"></script>   
+    <script src="v/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="v/js/ie10-viewport-bug-workaround.js"></script>
+     <script src="js/app.js"></script>
+  </body>
+</html>

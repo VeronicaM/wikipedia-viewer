@@ -1,0 +1,69 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css">
+<link href="public/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./public/css/main.css" type="text/css">
+
+<link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="./public/images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./public/images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./public/images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="./public/images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./public/images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./public/images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="./public/images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./public/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./public/images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./public/images/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+	
+</head>
+
+<body >
+     <div id="container" class="containter-fluid" > 
+          <a id="randomWikis" href="#"> See </a>
+      	
+		  <div class="input-group">
+			   <input placeholder="Search Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
+			    <span class="input-group-addon"  id="refresh"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+		  </div>
+		   <div id="wikiInfo">
+
+		   </div>
+		   <div id="randomWikis">
+
+		   </div>
+		  
+     </div>
+    	  <script id="searchResults" type="text/x-handlebars-template">​
+	          {{#each query.pages}}
+		   	    <h2>{{title}}</h2>
+			    <div>{{extract}}</div>
+			    <div><img src='{{thumbnail.source}}'/></div>
+			  {{/each}}
+	      </script>
+
+	      <script id="randomResults" type="text/x-handlebars-template">​
+	          {{#each wikis}}
+		   	    <div><a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Guess</a></div>
+			  {{/each}}
+	      </script>
+
+      <script src="public/js/jquery-3.1.1.min.js"></script>
+      <script src="public/js/jquery-ui.min.js"></script>
+      <script src="public/js/bootstrap.min.js"></script>
+      <script src="public/js/handlebars-v4.0.5.js"></script>
+      <script src="https://use.fontawesome.com/222bdb96f4.js"></script>
+   <script type="text/javascript" src="public/js/main.js"></script>
+</body>
+
+</html>
