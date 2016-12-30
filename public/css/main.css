@@ -5,7 +5,10 @@
 .input-group{
   width: 30%; 
 }
-
+body{
+  background-size: cover;
+  background-repeat: none;
+ }
 .languages{
       display: flex;
     justify-content: space-around;
@@ -19,4 +22,28 @@
   color: ##4A817F;
   background-color: #F2E1C3;
   padding: 10px;
+}
+.card{
+    background-color: darkorange;
+    opacity: 0.9;
+    color: white;
+    filter: blur(1px);
+    border-radius: 10px;
+}
+.card-container{
+    width: 17%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+.lock{
+    float: right;
+    position: relative;
+    top: 46px;
+    right: 10px;
+    font-size: 35px !important;
+    z-index: 2;
+    color: brown;
+    font-weight: 800;
+    align-self: flex-end;
 }

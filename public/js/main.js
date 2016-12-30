@@ -1,9 +1,9 @@
 $(function () 
  {
      let lang="",
-     isRandom =false,
-     searchTerm="",
-     languages=["en","fr","ru","sv","ja","ro","it","es"];
+	     isRandom =false,
+	     searchTerm="",
+	     languages=["en","fr","ru","sv","ja","ro","it","es"];
      
 
 	 $(".searchbox").autocomplete({
@@ -34,6 +34,7 @@ $(function ()
 				       getWikiInfo(e.currentTarget.value);
 				    }
 			});
+			$('body').css("background-image","url('public/images/newspaper_texture"+Math.round((Math.random()*4+1))+".jpg')");
 			//identify user preffered language
 			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
 			if(languages.indexOf(lang) >=0){
@@ -83,10 +84,16 @@ $(function ()
 	 		  isRandom = true;
 	 	      let template = $("#randomResults").html();
 		      let compiledTemplate = Handlebars.compile(template);
-		       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {lang:lang}; });
+		       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {
+		       	         lang:lang,
+		       	         top:Math.round(Math.random()*200+100),
+		       	         left:Math.round(Math.random()*700+150),
+		       	         rotation: Math.round(Math.random()*30+10)
+		       	      }; });
 		      
 		       let placeholder = {wikis:mockA};
 		      $("#wikiInfo").html(compiledTemplate(placeholder));
+		      $(".draggable").draggable();
 	 }
    
 });

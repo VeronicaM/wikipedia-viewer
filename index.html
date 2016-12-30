@@ -31,18 +31,13 @@
 <body >
 
 
-    <a id="randomWikis" href="#"> See </a>
-         
-     <div id="container" class="containter-fluid beforeSearch" > 
-         <div class="beforeSearch">
-          <div class="input-group">
-			   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
-			    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
-		  </div>
-		  
-         </div>
-          <div id="wikiInfo"> </div>
-     </div>
+      <a id="randomWikis" href="#"> See </a>
+      <div class="input-group">
+		   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
+		    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
+	  </div>
+	  
+          <div id="wikiInfo" > </div>
      
      <footer class="footer">
       <div class="container">
@@ -74,8 +69,25 @@
 
 	      <script id="randomResults" type="text/x-handlebars-template">​
 	          {{#each wikis}}
-		   	    <div>		
-		   	    <a href="https://{{lang}}.wikipedia.org/wiki/Special:Random" target="_blank">Guess</a></div>
+	          <div class="card-container draggable" style="top:{{top}}px;left: {{left}}px;transform: rotate({{rotation}}deg); ">
+	                <i class="fa fa-lock lock"></i>
+			   	    <div class="card">
+			   	    	    <p style="text-align: center;">
+			   	    	 	     ----------------------------
+			   	    	 	<p>
+			   	    	 	<div class="row">
+			   	    	     <div class="col-xs-6">	
+			   	    	   	--------------------------------------------------------------------------------------
+			   	    	 	</div>
+			   	    	 	<div class="col-xs-6">	
+			   	    	   	--------------------------------------------------------------------------------------
+			   	    	 	</div>
+			   	    	 	</div>
+			   	    	 	</p>
+			   	    	 </p>		
+			   	   		 <a href="https://{{lang}}.wikipedia.org/wiki/Special:Random" target="_blank">View</a>
+			   	    </div>
+		   	    </div>
 			  {{/each}}
 	      </script>
 
