@@ -1,18 +1,24 @@
 $(function () 
  {
-          
+     let lang="en",
+     isRandom =false,
+     searchTerm="";
+     
+
 	 $(".searchbox").autocomplete({
 		source: function (request, response) {
 		 jQuery.getJSON(
-			"./functions.php?autocomplete=true&q="+request.term,
+			"./functions.php?autocomplete=true&q="+request.term+"&lang="+lang,
 			function (data) {
 			   response(data);
+			   isRandom=false;
 			}
 		 );
 		},
 		minLength: 3,
 		select: function (event, ui) {
-		   getWikiInfo(ui.item.value);	
+			searchTerm = ui.item.value;
+		   getWikiInfo(searchTerm);	
 		   return false;
 		}
 	 });
@@ -31,17 +37,30 @@ $(function ()
  				getRandomWikis();
 			});
 			$("#refresh").click(function(e){
- 				 $("#wikiInfo").html("");
- 				 $(".searchbox").val("");
+ 				reset();
+			});
+			$(".languages a").click(function(e){
+ 				lang=e.currentTarget.id;
+ 				$('.languages a').removeClass('active')
+ 				 $(this).addClass("active");
+ 				 if(isRandom){
+ 				 	getRandomWikis();
+ 				 }
+ 				 else if(searchTerm !==""){
+ 					getWikiInfo(searchTerm);
+ 				 }
 			});
 	  });
 	 
-	   
-
+	function reset(){
+		 $("#wikiInfo").html("");
+ 		 $(".searchbox").val("");
+ 		 searchTerm = "";
+ 		 isRandom = false;	
+	}   
 
 	function getWikiInfo(query){
-			$.getJSON("./functions.php?search="+query, function(result){
-				console.log('result',result);
+			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
 				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
@@ -50,14 +69,13 @@ $(function ()
 	}
 	
 	 function getRandomWikis(){
+	 		  isRandom = true;
 	 	      let template = $("#randomResults").html();
 		      let compiledTemplate = Handlebars.compile(template);
-		       let mockA = Array.apply(null, Array(30)).map(function (x, i) { return i; });
+		       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {lang:lang}; });
+		      
 		       let placeholder = {wikis:mockA};
 		      $("#wikiInfo").html(compiledTemplate(placeholder));
 	 }
-
-     
-    
-     
+   
 });

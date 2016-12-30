@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css">
 <link href="public/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./public/css/main.css" type="text/css">
-
+<link href="public/css/sticky-footer.css" rel="stylesheet">
 <link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png">
@@ -29,17 +29,38 @@
 </head>
 
 <body >
+
+
     <a id="randomWikis" href="#"> See </a>
+         
      <div id="container" class="containter-fluid beforeSearch" > 
          <div class="beforeSearch">
           <div class="input-group">
-			   <input placeholder="Search Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
-			    <span class="input-group-addon"  id="refresh"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+			   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
+			    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
 		  </div>
 		  
          </div>
           <div id="wikiInfo"> </div>
      </div>
+     
+     <footer class="footer">
+      <div class="container">
+        <p class="text-muted">
+        	 <ul class="languages">
+        	     <li><a id="en" href="#">English</a></li>
+		         <li><a id="es" href="#">Español</a></li>
+		        <li><a id="fr" href="#">Français</a></li>
+		        <li><a id="it" href="#">Italiano</a></li>
+		        <li><a id="ja" href="#">日本語</a></li>
+		         <li><a id="ro" href="#">Română</a></li>
+		        <li><a id="ru" href="#">русский</a></li>
+		        <li><a id="sv" href="#">svenska </a></li>
+            </ul>
+        </p>
+      </div>
+    </footer>
+
     	  <script id="searchResults" type="text/x-handlebars-template">​
 	          {{#each query.pages}}
 		   	    <div>
@@ -53,7 +74,8 @@
 
 	      <script id="randomResults" type="text/x-handlebars-template">​
 	          {{#each wikis}}
-		   	    <div><a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">Guess</a></div>
+		   	    <div>		
+		   	    <a href="https://{{lang}}.wikipedia.org/wiki/Special:Random" target="_blank">Guess</a></div>
 			  {{/each}}
 	      </script>
 

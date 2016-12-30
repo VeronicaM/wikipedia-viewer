@@ -1,23 +1,22 @@
 #refresh:hover{
    color: blue;
 }
-body{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 .input-group{
   width: 30%; 
 }
-.beforeSearch{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+
+.languages{
+      display: flex;
+    justify-content: space-around;
+    list-style: none;
 }
-.afterSearch{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.languages a{
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.active{
+  color: ##4A817F;
+  background-color: #F2E1C3;
+  padding: 10px;
 }
