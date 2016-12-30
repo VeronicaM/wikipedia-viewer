@@ -1,8 +1,9 @@
 $(function () 
  {
-     let lang="en",
+     let lang="",
      isRandom =false,
-     searchTerm="";
+     searchTerm="",
+     languages=["en","fr","ru","sv","ja","ro","it","es"];
      
 
 	 $(".searchbox").autocomplete({
@@ -33,6 +34,15 @@ $(function ()
 				       getWikiInfo(e.currentTarget.value);
 				    }
 			});
+			//identify user preffered language
+			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+			if(languages.indexOf(lang) >=0){
+				$("#"+lang).addClass("active");
+			}
+			else{
+			   lang ="en";
+			   $("#"+lang).addClass("active");	
+			}
 			$("#randomWikis").click(function(e){
  				getRandomWikis();
 			});
@@ -49,6 +59,7 @@ $(function ()
  				 else if(searchTerm !==""){
  					getWikiInfo(searchTerm);
  				 }
+
 			});
 	  });
 	 
