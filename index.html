@@ -1,4 +1,8 @@
-	<!DOCTYPE html>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+[
+  <!ATTLIST div imagetitle CDATA #IMPLIED>
+]>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -9,6 +13,7 @@
 <link href="public/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./public/css/main.css" type="text/css">
 <link href="public/css/sticky-footer.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 <link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png">
@@ -32,7 +37,7 @@
 
 
       <a id="randomWikis" href="#"> See </a>
-      <div class="input-group">
+      <div class="input-group searchInput">
 		   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
 		    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
 	  </div>
@@ -55,16 +60,27 @@
         </p>
       </div>
     </footer>
-
+			
     	  <script id="searchResults" type="text/x-handlebars-template">​
 	          {{#each query.pages}}
-		   	    <div>
-			   	     <a href="https://en.wikipedia.org/wiki/{{title}}" target="_blank">
-		   	  <h2>{{title}}</h2></a>
-				    <div>{{extract}}</div>
-				    <div><img src='{{thumbnail.source}}'/></div>
+	           {{#multiple_of_3 @index }}
+	              <hr class="shelf"/>
+	           {{/multiple_of_3}}
+	          <div class="book-container">
+
+			   	    <div class="book" > 
+							<a href="https://en.wikipedia.org/wiki/{{title}}" target="_blank"> <h4>{{title}}</h4></a>
+						    <div>{{extract}}</div>
+					     
+					 </div>
+			   	    <div class="book"imagetitle='{{pageimage}}'>
+			   	    	 <h4>{{title}}</h4> 
+			   	    	 <img class="pic" src=''/>
+			   	    </div>
+			   </div>  
 			    </div>
 			  {{/each}}
+			    <hr class="shelf"/>
 	      </script>
 
 	      <script id="randomResults" type="text/x-handlebars-template">​

@@ -5,6 +5,13 @@
 .input-group{
   width: 30%; 
 }
+.searchInput{
+    position: absolute;
+    top: 50%;
+    right: 40%;
+    transition: all 0.5s ease;
+}
+
 body{
   background-size: cover;
   background-repeat: none;
@@ -36,6 +43,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .lock{
     float: right;
     position: relative;
@@ -46,4 +54,91 @@ body{
     color: brown;
     font-weight: 800;
     align-self: flex-end;
+}
+#wikiInfo{
+    height: 70vh;
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 10%;
+    opacity: 0;
+    transition: all 1s ease 0.5s;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+  }
+.book-container{
+     width: 25%;
+    height: 200px;
+    position: relative;
+    margin-right: 50px;
+     -webkit-perspective: 500px; /* Chrome, Safari, Opera */
+    perspective: 500px;
+}
+.book {
+    content: "";
+    position: absolute;
+    height: 150px;
+    width: 61%;
+    top: 15px;
+    left: 150px;
+    -webkit-transition: -webkit-transform 300ms linear;
+    transition: -webkit-transform 300ms linear;
+    transition: transform 300ms linear;
+    transition: transform 300ms linear, -webkit-transform 300ms linear;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    background: white;
+    background-image: url(../images/texture_002.png);
+    z-index: 1;
+}
+.book h4{
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    top: 33%;
+    left: 3%;
+    color: white  ;
+    font-family: 'Abhaya Libre', serif;
+}
+.book img{
+  opacity: 0;
+}
+.book.flipped h4{
+  visibility: hidden;
+}
+.book.flipped img{
+  -webkit-transition: all 0.01s linear;
+   transition: all 0.01s linear;
+    width: 70%;
+    height: 80%;
+    top: 13%;
+    left: 16%;
+    position: absolute;
+}
+.book:hover {
+  z-index: 2;
+}
+.book.flipped {
+  -webkit-transform: rotate3d(0, 1, 0, -180deg);
+          transform: rotate3d(0, 1, 0, -180deg);
+}
+.appear{
+  opacity: 1 !important;
+}
+.shelf{
+      margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    position: relative;
+    background-color: brown;
+    border-top: 1px solid #eee;
+    width: 100%;
+    height: 25px;
+    padding-left: -6px;
+    perspective: 300px;
+    transform: skew(-20deg);
 }

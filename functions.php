@@ -12,8 +12,16 @@
            return $response;
     }
    
+   function getImageURL(){
+      $response = file_get_contents("https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&format=json&iiprop=url|size&iiurlwidth=120&iiurlheight=120&titles=File:".$_GET['img']);
+            $response = json_decode($response);
+           return $response;
+   }
     if(isset($_GET['autocomplete'])){
       echo json_encode(getAutocomplete()[1]);
+    }
+    else if(isset($_GET['img'])){
+      echo json_encode(getImageURL());
     }
     else {
       echo json_encode(getWikiInfo());  

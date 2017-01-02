@@ -34,7 +34,8 @@ $(function ()
 				       getWikiInfo(e.currentTarget.value);
 				    }
 			});
-			$('body').css("background-image","url('public/images/newspaper_texture"+Math.round((Math.random()*4+1))+".jpg')");
+
+		//	$('body').css("background-image","url('public/images/newspaper_texture"+Math.round((Math.random()*4+1))+".jpg')");
 			//identify user preffered language
 			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
 			if(languages.indexOf(lang) >=0){
@@ -62,21 +63,43 @@ $(function ()
  				 }
 
 			});
+
+			Handlebars.registerHelper('multiple_of_3', function(a,opts) {
+					    if(a % 3 ==0 && a!==0)
+					    	  return opts.fn(this);
+						    else
+						        return opts.inverse(this);
+					});
 	  });
 	 
 	function reset(){
 		 $("#wikiInfo").html("");
  		 $(".searchbox").val("");
+ 		 $(".searchInput").css("top","50%");
+ 		 $("#wikiInfo").css("opacity","0");			  
  		 searchTerm = "";
  		 isRandom = false;	
 	}   
 
 	function getWikiInfo(query){
 			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
+				  $(".searchInput").css("top","1%");
+				  $("#wikiInfo").css("opacity","1");
+				  	
 				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			      $("#wikiInfo").html(compiledTemplate(result));
+			       $('.book').on('click', function(){
+				    $(this).toggleClass('flipped');
+				    let me = this;
+				   $.getJSON("./functions.php?img="+this.attributes.imagetitle.nodeValue,function(result){
+	 					let key = Object.keys(result.query.pages)[0];
+	 					let source = result.query.pages[key].imageinfo[0].thumburl;	
+	 					me.children[1].src=source;	
+	 					me.children[1].className= me.children[1].className == 'appear'? "":'appear';
+	 				});	
+				  });  
 			});
 	}
 	
@@ -93,6 +116,7 @@ $(function ()
 		      
 		       let placeholder = {wikis:mockA};
 		      $("#wikiInfo").html(compiledTemplate(placeholder));
+		    
 		      $(".draggable").draggable();
 	 }
    
