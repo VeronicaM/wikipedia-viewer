@@ -34,7 +34,7 @@ $(function ()
 				       getWikiInfo(e.currentTarget.value);
 				    }
 			});
-
+		
 		//	$('body').css("background-image","url('public/images/newspaper_texture"+Math.round((Math.random()*4+1))+".jpg')");
 			//identify user preffered language
 			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
@@ -90,6 +90,7 @@ $(function ()
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			      $("#wikiInfo").html(compiledTemplate(result));
+			       $(".extract").mCustomScrollbar({ scrollbarPosition: "outside",autoHideScrollbar: true, });
 			       $('.book').on('click', function(e){
 			       if(e.currentTarget.className.indexOf("unflippable") < 0){
 				    $(this).toggleClass('flipped');

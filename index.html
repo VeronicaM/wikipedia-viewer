@@ -11,9 +11,10 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css">
 <link href="public/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="public/css/jquery.mCustomScrollbar.css" />
 <link rel="stylesheet" href="./public/css/main.css" type="text/css">
 <link href="public/css/sticky-footer.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Indie+Flower" rel="stylesheet">
 <link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png">
@@ -69,14 +70,15 @@
 	          <div class="book-container">
 
 			   	    <div class="book unflippable" > 
-							<a href="https://en.wikipedia.org/wiki/{{title}}" target="_blank"> <h4>{{title}}</h4></a>
-						    <div>{{extract}}</div>
+						    <div class="extract mCustomScrollbar" data-mcs-theme="dark">{{extract}}</div>
+						     <a href="https://en.wikipedia.org/wiki/{{title}}" target="_blank"> <h4 style="font-size: 13px;">{{title}}</h4></a>
 					     
 					 </div>
 			   	    <div class="book" imagetitle='{{pageimage}}'>
 			   	    	 <h4>{{title}}</h4> 
 			   	    	 <img class="pic" src='#'/>
 			   	    	 <img class="loading" src="public/images/ico_loading.gif"/>
+
 			   	    </div>
 			   </div>  
 			    </div>
@@ -110,6 +112,7 @@
 
       <script src="public/js/jquery-3.1.1.min.js"></script>
       <script src="public/js/jquery-ui.min.js"></script>
+      <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/bootstrap.min.js"></script>
       <script src="public/js/handlebars-v4.0.5.js"></script>
       <script src="https://use.fontawesome.com/222bdb96f4.js"></script>

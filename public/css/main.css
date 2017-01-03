@@ -72,17 +72,28 @@ body{
   }
 .book-container{
      width: 25%;
-    height: 200px;
+    height: 220px;
     position: relative;
     margin-right: 50px;
      -webkit-perspective: 500px; /* Chrome, Safari, Opera */
     perspective: 500px;
 }
+.extract{
+    padding-left: 16%;
+    padding-right: 10%;
+    font-size: 13px;
+    overflow: auto;
+    height: 67%;
+    font-weight: 600;
+    margin-top: 6%;
+    color: #6E162C;
+    font-family: "Indie Flower";
+}
 .book {
     content: "";
     position: absolute;
-    height: 150px;
-    width: 61%;
+    height: 200px;
+    width: 65%;
     top: 15px;
     left: 150px;
     -webkit-transition: -webkit-transform 300ms linear;
@@ -96,16 +107,19 @@ body{
     z-index: 1;
 }
 .book h4{
-    font-size: 18px;
+        font-size: 20px;
     text-align: center;
     position: relative;
-    top: 33%;
-    left: 3%;
-    color: white  ;
-    font-family: 'Abhaya Libre', serif;
-     -webkit-transition: all 0.2s linear;
+    top: 29%;
+    left: 13%;
+    color: white;
+    font-family: 'Gloria Hallelujah', cursive;
+    -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
     opacity: 1;
+    width: 77%;
+        line-height: 1.5;
+    word-wrap: normal;
 }
 .book img{
   opacity: 0;
@@ -116,8 +130,10 @@ body{
 .book.flipped img{
   -webkit-transition: all 0.1s linear;
     transition: all 0.1s linear;
-    top: 13%;
+    top: 6%;
     position: absolute;
+  -webkit-transform: rotate3d(0, 1, 0, -180deg);
+   transform: rotate3d(0, 1, 0, -180deg);
 }
 .loading{
     width: 28%;
@@ -136,8 +152,8 @@ body{
   visibility: visible ;
 }
 .appear.portrait{
-    width: 60%;
-    height: 80%;
+    width: 57%;
+    height: 71%;
      left: 20%;
     opacity: 1 !important;
 }
