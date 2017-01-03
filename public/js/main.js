@@ -90,13 +90,16 @@ $(function ()
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			      $("#wikiInfo").html(compiledTemplate(result));
-			       $(".extract").mCustomScrollbar({ scrollbarPosition: "outside",autoHideScrollbar: true, });
+			       $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
 			       $('.book').on('click', function(e){
 			       if(e.currentTarget.className.indexOf("unflippable") < 0){
 				    $(this).toggleClass('flipped');
 				    let me = this;
 				    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
 				    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
+				    let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 30;
+				    let newClass = checkLength ? " short":" long";   
+				    me.previousElementSibling.children[1].className += newClass;
 				       $.getJSON("./functions.php?img="+this.attributes.imagetitle.nodeValue,function(result){
 				       
 	 					let key = Object.keys(result.query.pages)[0];
