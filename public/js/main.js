@@ -90,15 +90,34 @@ $(function ()
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			      $("#wikiInfo").html(compiledTemplate(result));
-			       $('.book').on('click', function(){
+			       $('.book').on('click', function(e){
+			       if(e.currentTarget.className.indexOf("unflippable") < 0){
 				    $(this).toggleClass('flipped');
 				    let me = this;
-				   $.getJSON("./functions.php?img="+this.attributes.imagetitle.nodeValue,function(result){
+				    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
+				    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
+				       $.getJSON("./functions.php?img="+this.attributes.imagetitle.nodeValue,function(result){
+				       
 	 					let key = Object.keys(result.query.pages)[0];
-	 					let source = result.query.pages[key].imageinfo[0].thumburl;	
+	 					let source ="",orientation="landscape";
+	 					try{
+	 				       source = result.query.pages[key].imageinfo[0].thumburl;
+	 				       if(result.query.pages[key].imageinfo[0].height >result.query.pages[key].imageinfo[0].width ){
+	 				       		orientation="portrait";
+	 				       }	
+	 					}catch(ex){
+	 						source = "public/images/cat.png";
+	 					}
+	 					
 	 					me.children[1].src=source;	
-	 					me.children[1].className= me.children[1].className == 'appear'? "":'appear';
+	 					if(me.children[1].src.indexOf("#") < 0){
+	 					   me.children[2].className = "loading loaded";
+	 					}
+	 				    me.children[1].className= me.children[1].className +" "+orientation;
 	 				});	
+				    
+				  }
+				
 				  });  
 			});
 	}
