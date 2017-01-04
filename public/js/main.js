@@ -69,11 +69,14 @@ $(function ()
 						    else
 						        return opts.inverse(this);
 					});
-		  Handlebars.registerHelper('applyClass', function(string) {
+		   Handlebars.registerHelper('applyClass', function(string) {
 			    if (string.length > 30) {
 			        return new Handlebars.SafeString('<h4 class="longTitle">' +string+ '</h4>');
 			    }
 			    return new Handlebars.SafeString('<h4 class="shortTitle">' +string+ '</h4>');
+			});
+		   Handlebars.registerHelper('getLang', function() {
+			    return lang;
 			});
 	  });
 	 
@@ -97,15 +100,14 @@ $(function ()
 			       $('.book').on('click', function(e){
 			       if(e.currentTarget.className.indexOf("unflippable") < 0){
 				     $(this).toggleClass('flipped');
-				     // if($(this).className.indexOf('flipped') <0){
-				     // 	 $(this).css("animate","flip 1s linear reverse");
-				     // }
 				    let me = this;
 				    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
 				    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
-				    let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 30;
+				    let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 25;
 				    let newClass = checkLength ? " short":" long";   
-				    me.previousElementSibling.children[1].className += newClass;
+				    let titleElemName = me.previousElementSibling.children[1];
+				    let oldClass = titleElemName.className;
+				     titleElemName.className = oldClass.indexOf(newClass)>=0?oldClass:oldClass+newClass;
 				       $.getJSON("./functions.php?img="+this.attributes[1].nodeValue,function(result){
 				       	
 	 					let key = Object.keys(result.query.pages)[0];
