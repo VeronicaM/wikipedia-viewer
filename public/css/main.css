@@ -192,6 +192,7 @@ body{
 }
 .unflippable{
    background-image: url(../images/texture_004.png);  
+   z-index:0 !important;
 }
 .loaded{
   opacity: 0 !important;
