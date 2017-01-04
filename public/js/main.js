@@ -24,8 +24,7 @@ $(function ()
 		}
 	 });
 
-	$(".searchbox").autocomplete("option", "delay", 100);
-	  
+  
 	  
 	  $(document).ready(function(){
 		    $('.searchbox').keyup(function(e){
@@ -70,6 +69,12 @@ $(function ()
 						    else
 						        return opts.inverse(this);
 					});
+		  Handlebars.registerHelper('applyClass', function(string) {
+			    if (string.length > 30) {
+			        return new Handlebars.SafeString('<h4 class="longTitle">' +string+ '</h4>');
+			    }
+			    return new Handlebars.SafeString('<h4 class="shortTitle">' +string+ '</h4>');
+			});
 	  });
 	 
 	function reset(){
@@ -83,9 +88,7 @@ $(function ()
 
 	function getWikiInfo(query){
 			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
-				  $(".searchInput").css("top","1%");
-				  $("#wikiInfo").css("opacity","1");
-				  	
+				  animateWikiInfo();
 				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
@@ -93,15 +96,18 @@ $(function ()
 			       $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
 			       $('.book').on('click', function(e){
 			       if(e.currentTarget.className.indexOf("unflippable") < 0){
-				    $(this).toggleClass('flipped');
+				     $(this).toggleClass('flipped');
+				     // if($(this).className.indexOf('flipped') <0){
+				     // 	 $(this).css("animate","flip 1s linear reverse");
+				     // }
 				    let me = this;
 				    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
 				    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
 				    let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 30;
 				    let newClass = checkLength ? " short":" long";   
 				    me.previousElementSibling.children[1].className += newClass;
-				       $.getJSON("./functions.php?img="+this.attributes.imagetitle.nodeValue,function(result){
-				       
+				       $.getJSON("./functions.php?img="+this.attributes[1].nodeValue,function(result){
+				       	
 	 					let key = Object.keys(result.query.pages)[0];
 	 					let source ="",orientation="landscape";
 	 					try{
@@ -125,7 +131,10 @@ $(function ()
 				  });  
 			});
 	}
-	
+	function animateWikiInfo(){
+		 $(".searchInput").css("top","10%");
+		 $("#wikiInfo").css("opacity","1");  	
+	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
 	 	      let template = $("#randomResults").html();
@@ -139,7 +148,7 @@ $(function ()
 		      
 		       let placeholder = {wikis:mockA};
 		      $("#wikiInfo").html(compiledTemplate(placeholder));
-		    
+		    	animateWikiInfo();
 		      $(".draggable").draggable();
 	 }
    

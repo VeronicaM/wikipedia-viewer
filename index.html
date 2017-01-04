@@ -1,43 +1,35 @@
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-[
-  <!ATTLIST div imagetitle CDATA #IMPLIED>
-]>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css">
-<link href="public/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css"/>
+<link href="public/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="public/css/jquery.mCustomScrollbar.css" />
-<link rel="stylesheet" href="./public/css/main.css" type="text/css">
-<link href="public/css/sticky-footer.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet">
-<link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="./public/images/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="./public/images/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="./public/images/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="./public/images/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="./public/images/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="./public/images/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="./public/images/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./public/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="./public/images/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./public/images/favicon-16x16.png">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
+<link href="public/css/sticky-footer.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet" />
+<link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="./public/images/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="./public/images/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="./public/images/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="./public/images/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="./public/images/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="./public/images/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="./public/images/apple-icon-180x180.png" />
+<link rel="icon" type="image/png" sizes="192x192"  href="./public/images/android-icon-192x192.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="./public/images/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="./public/images/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./public/images/favicon-16x16.png" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+<meta name="theme-color" content="#ffffff"/>
 	
 </head>
 
-<body >
-
-
-      <a id="randomWikis" href="#"> See </a>
+<body>
+      <div id="randomWikis"><a href="#"></a></div>
       <div class="input-group searchInput">
 		   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
 		    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -75,8 +67,9 @@
 			   	      <a href="https://en.wikipedia.org/wiki/{{title}}" target="_blank"> <h4 class="articleTitle">{{title}}</h4></a>
 						    <div class="extract mCustomScrollbar" data-mcs-theme="dark">{{extract}}</div>
 					 </div>
-			   	    <div class="book" imagetitle='{{pageimage}}'>
-			   	    	 <h4>{{title}}</h4> 
+			   	    <div class="book" data-imagetitle='{{pageimage}}'>
+			   	        {{#applyClass title}}
+			   	    	 {{/applyClass}} 
 			   	    	 <img class="pic" src='#'/>
 			   	    	 <img class="loading" src="public/images/ico_loading.gif"/>
 
