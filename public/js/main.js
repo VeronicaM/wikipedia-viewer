@@ -19,6 +19,7 @@ $(function ()
 		minLength: 3,
 		select: function (event, ui) {
 			searchTerm = ui.item.value;
+			 $(".searchbox").val(searchTerm);
 		   getWikiInfo(searchTerm);	
 		   return false;
 		}
@@ -29,7 +30,7 @@ $(function ()
 	  $(document).ready(function(){
 		    $('.searchbox').keyup(function(e){
 			      if(e.keyCode == 13)
-				    {
+				    { 
 				       getWikiInfo(e.currentTarget.value);
 				       $(this).autocomplete( "close" );
 				    }
@@ -92,41 +93,48 @@ $(function ()
 
 	function getWikiInfo(query){
 			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
-				  animateWikiInfo();
+				 
+				  
 				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
 			      let template = $("#searchResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
-			      $("#wikiInfo").html(compiledTemplate(result));
+			       
+			       $("#wikiInfo").html(compiledTemplate(result));
 			       $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
+			        animateWikiInfo();
 			       $('.book').on('click', function(e){
-			       if(e.currentTarget.className.indexOf("unflippable") < 0){
-				     $(this).toggleClass('flipped');
-				    let me = this;
-				    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
-				    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
-				    let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 25;
-				    let newClass = checkLength ? " short":" long";   
-				    let titleElemName = me.previousElementSibling.children[1];
-				    let oldClass = titleElemName.className;
-				     titleElemName.className = oldClass.indexOf(newClass)>=0?oldClass:oldClass+newClass;
+				       if(e.currentTarget.className.indexOf("unflippable") < 0){
+					     $(this).toggleClass('flipped');
+					    let me = this;
+					    
+					    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
+					    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
+				    	
+				    	let checkLength = me.previousElementSibling.children[0].children[0].textContent.length > 25;
+				   		let newClass = checkLength ? " short":" long";   
+				        let titleElemName = me.previousElementSibling.children[1];
+				        let oldClass = titleElemName.className;
+				        titleElemName.className = oldClass.indexOf(newClass)>=0?oldClass:oldClass+newClass;
+				       
+
 				       $.getJSON("./functions.php?img="+this.attributes[1].nodeValue,function(result){
 				       	
-	 					let key = Object.keys(result.query.pages)[0];
-	 					let source ="",orientation="landscape";
-	 					try{
-	 				       source = result.query.pages[key].imageinfo[0].thumburl;
-	 				       if(result.query.pages[key].imageinfo[0].height >result.query.pages[key].imageinfo[0].width ){
-	 				       		orientation="portrait";
-	 				       }	
-	 					}catch(ex){
-	 						source = "public/images/cat.png";
-	 					}
-	 					
-	 					me.children[1].src=source;	
-	 					if(me.children[1].src.indexOf("#") < 0){
-	 					   me.children[2].className = "loading loaded";
-	 					}
-	 				    me.children[1].className= me.children[1].className +" "+orientation;
+		 					let key = Object.keys(result.query.pages)[0];
+		 					let source ="",orientation="landscape";
+		 					try{
+		 				       source = result.query.pages[key].imageinfo[0].thumburl;
+		 				       if(result.query.pages[key].imageinfo[0].height >result.query.pages[key].imageinfo[0].width ){
+		 				       		orientation="portrait";
+		 				       }	
+		 					}catch(ex){
+		 						source = "public/images/cat.png";
+		 					}
+		 					
+	 						me.children[1].src=source;	
+		 					if(me.children[1].src.indexOf("#") < 0){
+		 					   me.children[2].className = "loading loaded";
+		 					}
+		 				    me.children[1].className= me.children[1].className +" "+orientation;
 	 				});	
 				    
 				  }
@@ -135,7 +143,7 @@ $(function ()
 			});
 	}
 	function animateWikiInfo(){
-		 $(".searchInput").css("top","10%");
+		 $(".searchInput").css("top","10%"); 	
 		 $("#wikiInfo").css("opacity","1");  	
 	}
 	 function getRandomWikis(){

@@ -168,6 +168,7 @@ body{
 .short{
     height: 43% !important;
     padding-top: 0px;
+    margin-top: -5px;
 }
 .book img{
   opacity: 0;
