@@ -31,6 +31,7 @@ $(function ()
 			      if(e.keyCode == 13)
 				    {
 				       getWikiInfo(e.currentTarget.value);
+				       $(this).autocomplete( "close" );
 				    }
 			});
 		
