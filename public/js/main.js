@@ -72,8 +72,8 @@ $(function ()
 
 			});
 
-			Handlebars.registerHelper('multiple_of_3', function(a,opts) {
-					    if(a % 3 ==0 && a!==0)
+			Handlebars.registerHelper('multiple_of_2', function(a,opts) {
+					    if(a % 2 ==0 && a!==0)
 					    	  return opts.fn(this);
 						    else
 						        return opts.inverse(this);
