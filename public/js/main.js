@@ -115,14 +115,22 @@ $(function ()
  		 searchTerm = "";
  		 isRandom = false;	
 	}   
+	function closeBooks(){
+		$('img').removeClass('appear');
+		$(".book").removeClass('flipped');
+	}
    function addEvents(){
    	  $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
 			        animateWikiInfo();
 			       $('.book').on('click', function(e){
 				       if(e.currentTarget.className.indexOf("unflippable") < 0){
+				       	if(e.currentTarget.className.indexOf("flipped") < 0)
+				       	  {
+				       	  	closeBooks();
+				       	  }
 					     $(this).toggleClass('flipped');
 					    let me = this;
-					    
+					 
 					    me.children[1].className= me.className == 'book flipped'? "appear":'pic';	
 					    me.children[2].className = me.children[1].src.indexOf("#") >= 0 ? "loading setVisible":"loading loaded";
 				    	
