@@ -58,9 +58,9 @@
     	  <script id="searchResults" type="text/x-handlebars-template">​
 	          {{#each query.pages}}
 	      
-	           {{#multiple_of_2 @index }}
+	           {{#addShelf @index }}
 	              <hr class="shelf"/>
-	           {{/multiple_of_2}}
+	           {{/addShelf}}
 	         
 	          <div class="book-container">
 
@@ -121,6 +121,7 @@
       <script src="public/js/handlebars-v4.0.5.js"></script>
       <script src="https://use.fontawesome.com/222bdb96f4.js"></script>
       <script src="public/js/jquery.ui.touch-punch.min.js"></script>
+         <script src="public/js/enquire.min.js"></script>
    <script type="text/javascript" src="public/js/main.js"></script>
 </body>
 

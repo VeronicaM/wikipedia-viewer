@@ -3,6 +3,7 @@ $(function ()
      let lang="",
 	     isRandom =false,
 	     searchTerm="",
+	     searchItems ="",
 	     languages=["en","fr","ru","sv","ja","ro","it","es"];
      
 
@@ -72,8 +73,9 @@ $(function ()
 
 			});
 
-			Handlebars.registerHelper('multiple_of_2', function(a,opts) {
-					    if(a % 2 ==0 && a!==0)
+			Handlebars.registerHelper('addShelf', function(a,opts) {
+				       let multiple = $(window).width() <1286 ? 1:2;
+					    if(a % multiple ==0 && a!==0)
 					    	  return opts.fn(this);
 						    else
 						        return opts.inverse(this);
@@ -87,8 +89,23 @@ $(function ()
 		   Handlebars.registerHelper('getLang', function() {
 			    return lang;
 			});
+
+		      enquire.register("screen and (max-width: 1290px)", {
+		        match : function() {
+		            renderWiki();
+		            addEvents();
+		        },
+		        unmatch : function() {
+		            renderWiki();
+		            addEvents();        
+		        }
+		    });
 	  });
-	 
+	 function renderWiki(){
+	       let template = $("#searchResults").html();
+	      let compiledTemplate = Handlebars.compile(template);   
+	      $("#wikiInfo").html(compiledTemplate(searchItems));		     
+	 }
 	function reset(){
 		 $("#wikiInfo").html("");
  		 $(".searchbox").val("");
@@ -98,17 +115,8 @@ $(function ()
  		 searchTerm = "";
  		 isRandom = false;	
 	}   
-
-	function getWikiInfo(query){
-			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
-				 
-				  
-				  $("#container").removeClass("beforeSearch").addClass("afterSearch");
-			      let template = $("#searchResults").html();
-			      let compiledTemplate = Handlebars.compile(template);
-			       
-			       $("#wikiInfo").html(compiledTemplate(result));
-			       $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
+   function addEvents(){
+   	  $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
 			        animateWikiInfo();
 			       $('.book').on('click', function(e){
 				       if(e.currentTarget.className.indexOf("unflippable") < 0){
@@ -148,6 +156,12 @@ $(function ()
 				  }
 				
 				  });  
+   }
+	function getWikiInfo(query){
+			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
+				    searchItems = result;
+				    renderWiki();
+			     	addEvents();
 			});
 	}
 	function animateWikiInfo(){
