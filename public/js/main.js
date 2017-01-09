@@ -20,7 +20,8 @@ $(function ()
 		select: function (event, ui) {
 			searchTerm = ui.item.value;
 			 $(".searchbox").val(searchTerm);
-		   getWikiInfo(searchTerm);	
+		     getWikiInfo(searchTerm);	
+		     isRandom =false;
 		   return false;
 		}
 	 });
@@ -33,6 +34,7 @@ $(function ()
 				    { 
 				       getWikiInfo(e.currentTarget.value);
 				       $(this).autocomplete( "close" );
+				       isRandom = false;
 				    }
 			});
 		
@@ -48,6 +50,11 @@ $(function ()
 			}
 			$("#randomWikis").click(function(e){
  				getRandomWikis();
+ 				isRandom = true; 
+ 				$('.input-group').css('opacity','0');
+			});
+			$('#searchWiki').click(function(e){
+				reset();	
 			});
 			$("#refresh").click(function(e){
  				reset();
@@ -86,7 +93,8 @@ $(function ()
 		 $("#wikiInfo").html("");
  		 $(".searchbox").val("");
  		 $(".searchInput").css("top","50%");
- 		 $("#wikiInfo").css("opacity","0");			  
+ 		 $("#wikiInfo").css("opacity","0");		
+ 		 $('.input-group').css('opacity','1');	  
  		 searchTerm = "";
  		 isRandom = false;	
 	}   

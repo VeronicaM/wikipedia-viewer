@@ -3,12 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css"/>
-<link href="public/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="public/css/jquery.mCustomScrollbar.css" />
-<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="./public/css/animate.css">
-<link href="public/css/sticky-footer.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet" />
 <link rel="apple-touch-icon" sizes="57x57" href="./public/images/apple-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="./public/images/apple-icon-60x60.png" />
@@ -30,7 +24,13 @@
 </head>
 
 <body>
-      <div id="randomWikis"><a href="#"></a></div>
+
+	 <div class="cc-selector">
+        <input id="searchWiki" type="radio" name="wiki-selection" checked="true	" value="search" />
+        <label class="icon search" for="searchWiki"></label>
+        <input id="randomWikis" type="radio" name="wiki-selection" value="random" />
+        <label class="icon random"for="randomWikis"></label>
+    </div>
       <div class="input-group searchInput">
 		   <input placeholder="Wikipedia" class="searchbox form-control" type="text"  value="" aria-describedby="refresh"/>
 		    <span class="input-group-addon"  id="refresh"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -106,12 +106,21 @@
 			  {{/each}}
 	      </script>
 
+	<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css"/>
+	<link href="public/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="public/css/jquery.mCustomScrollbar.css" />
+	<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
+	  <link rel="stylesheet" href="./public/css/animate.css">
+	<link href="public/css/sticky-footer.css" rel="stylesheet" />
+
+
       <script src="public/js/jquery-3.1.1.min.js"></script>
       <script src="public/js/jquery-ui.min.js"></script>
       <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/bootstrap.min.js"></script>
       <script src="public/js/handlebars-v4.0.5.js"></script>
       <script src="https://use.fontawesome.com/222bdb96f4.js"></script>
+      <script src="public/js/jquery.ui.touch-punch.min.js"></script>
    <script type="text/javascript" src="public/js/main.js"></script>
 </body>
 
