@@ -124,7 +124,7 @@ $(function ()
 			        animateWikiInfo();
 			       $('.book').on('click', function(e){
 				       if(e.currentTarget.className.indexOf("unflippable") < 0){
-				       	if(e.currentTarget.className.indexOf("flipped") < 0)
+				       	if(e.currentTarget.className.indexOf("flipped")<0)
 				       	  {
 				       	  	closeBooks();
 				       	  }
