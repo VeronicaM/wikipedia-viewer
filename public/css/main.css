@@ -199,6 +199,7 @@ body{
 }
 .book img{
   opacity: 0;
+
 }
 .book.flipped h4{
  opacity: 0;
@@ -235,6 +236,9 @@ body{
     height: 71%;
      left: 20%;
     opacity: 1 !important;
+     -webkit-box-shadow: 0px 0px 0px 2px #AA6C19;
+       -moz-box-shadow:  0px 0px 0px 2px #AA6C19;
+       box-shadow: 0px 0px 0px 2px #AA6C19;
 }
 .appear.landscape{
     width: 78%;
@@ -242,6 +246,9 @@ body{
     left: 12%;
     opacity: 1 !important;
     border-radius: 8px;
+     -webkit-box-shadow: 0px 0px 0px 2px #AA6C19;
+       -moz-box-shadow:  0px 0px 0px 2px #AA6C19;
+        box-shadow: 0px 0px 0px 2px #AA6C19;
 }
 .book:hover {
   z-index: 2;
@@ -251,6 +258,7 @@ body{
   background-image: url(../images/texture_005.png);
   -webkit-transform: rotate3d(0, 1, 0, -180deg);
           transform: rotate3d(0, 1, 0, -180deg);
+
 }
 .shelf{
     margin-top: 20px;
