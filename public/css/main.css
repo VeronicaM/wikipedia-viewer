@@ -118,14 +118,6 @@ body{
     justify-content: space-between;
     align-items: flex-start;
   }
-.book-container{
-    width: 635px;
-    height: 333px;
-    padding-left: 21%;
-    position: relative;
-    -webkit-perspective: 350px;
-    perspective: 950px;
-}
 .articleTitle{
     margin-top: 13% !important;
     font-size: 17px !important;
@@ -147,25 +139,14 @@ body{
     height: 33%;
     width: 97%;
 }
-.book {
-    position: absolute;
-    min-height: 321px;
-    height: 321px;
-    min-width: 253px;
-    width: 253px;
-    top: 15px;
-    -webkit-transition: -webkit-transform 0.5s linear,
-    background-image 0.2s 0.2s;
-    transition: -webkit-transform 0.5s linear,background-image 0.2s 0.2s;
-    
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    background: white;
-    background-image: url(../images/book-cover-02.png);  
-    z-index: 1;
-    transform: rotateY(-12deg);
+
+.cover{
+  background-image: url(../images/book-cover-02.png) !important;
 }
-.book h4{
+.page{
+ background-image: url(../images/texture_005.png);  
+}
+.page h4{
     font-size: 30px;
     text-align: center;
     position: relative;
@@ -197,20 +178,27 @@ body{
     padding-top: 0px;
     margin-top: -5px;
 }
-.book img{
+.page img{
   opacity: 0;
+  position: absolute;
+  top: 33px;
+  left: 13%;
 
+}
+.wrapper{
+  width: 50%;
+  padding-left: 5%;
+  min-width: 300px;
 }
 .book.flipped h4{
  opacity: 0;
 }
-.book.flipped img{
+.page img,{
   -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
     top: 14%;
     position: absolute;
-  -webkit-transform: rotate3d(0, 1, 0, -180deg);
-   transform: rotate3d(0, 1, 0, -180deg);
+
 }
 .loading{
     width: 28%;
@@ -219,10 +207,7 @@ body{
     left: 35%;
     top: 37% !important;
 }
-.unflippable{
-   background-image: url(../images/texture_005.png);  
-   z-index:0 !important;
-}
+
 .loaded{
   opacity: 0 !important;
   visibility: hidden;
@@ -250,16 +235,7 @@ body{
        -moz-box-shadow:  0px 0px 0px 2px #AA6C19;
         box-shadow: 0px 0px 0px 2px #AA6C19;
 }
-.book:hover {
-  z-index: 2;
-}
 
-.book.flipped {
-  background-image: url(../images/texture_005.png);
-  -webkit-transform: rotate3d(0, 1, 0, -180deg);
-          transform: rotate3d(0, 1, 0, -180deg);
-
-}
 .shelf{
     margin-top: 20px;
     margin-bottom: 20px;
@@ -274,15 +250,15 @@ body{
     transform: skew(-63deg);
 }
 @media only screen and (max-width : 1286px)  {
-  .book-container{
+  .wrapper{
       width: 100%;
-      height: 330px;
-      padding-left: 50%;
-      margin-bottom: 2%;
-   }
-   .book{
-      width: 223px;
-      min-width: 223px;
+      padding-left: 20%;
    }
 }
 
+@media only screen and (max-height : 620px)  {
+  .wrapper{
+      width: 100%;
+      padding-left: 20%;
+   }
+}

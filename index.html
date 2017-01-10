@@ -56,30 +56,33 @@
     </footer>
 			
     	  <script id="searchResults" type="text/x-handlebars-template">​
+
 	          {{#each query.pages}}
 	      
 	           {{#addShelf @index }}
 	              <hr class="shelf"/>
 	           {{/addShelf}}
-	         
-	          <div class="book-container">
-
-			   	    <div class="book unflippable" > 
-			   	        <a href="https://{{#getLang}}{{/getLang}}.wikipedia.org/wiki/{{title}}" target="_blank"> 
-			   	        <h4 class="articleTitle">{{title}}</h4></a>
-					    <div class="extract mCustomScrollbar" data-mcs-theme="dark">{{extract}}</div>
-					 </div>
-			   	    <div class="book" data-imagetitle='{{pageimage}}'>
-			   	        {{#applyClass title}}
-			   	    	 {{/applyClass}} 
-			   	    	 <img class="pic" src='#'/>
-			   	    	 <img class="loading" src="public/images/ico_loading.gif"/>
-
+	           <div class="wrapper">
+	             <div id="flipper{{@index}}" class="flipbook">
+					<div class="cover hard"> 
+					    {{#applyClass title}}
+			   	    	 {{/applyClass}}  
 			   	    </div>
-			   </div>  
-			    </div>
+					<div > 
+					     <img data-imagetitle='{{pageimage}}' class="pic" src='#'/>
+					     <img class="loading" src="public/images/ico_loading.gif"/>
+			   	     </div>
+					<div>  
+					    <a href="https://{{#getLang}}{{/getLang}}.wikipedia.org/wiki/{{title}}" target="_blank"> 
+			   	        <h4 class="articleTitle">{{title}}</h4></a>
+					    <div class="extract">{{extract}}</div> 
+					 </div>
+				</div>
+			</div>
+
 			  {{/each}}
 			    <hr class="shelf"/>
+
 	      </script>
 
 	      <script id="randomResults" type="text/x-handlebars-template">​
@@ -112,17 +115,17 @@
 	<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
 	  <link rel="stylesheet" href="./public/css/animate.css">
 	<link href="public/css/sticky-footer.css" rel="stylesheet" />
-
-
-      <script src="public/js/jquery-3.1.1.min.js"></script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="public/js/jquery-ui.min.js"></script>
       <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/bootstrap.min.js"></script>
       <script src="public/js/handlebars-v4.0.5.js"></script>
       <script src="https://use.fontawesome.com/222bdb96f4.js"></script>
       <script src="public/js/jquery.ui.touch-punch.min.js"></script>
-         <script src="public/js/enquire.min.js"></script>
-   <script type="text/javascript" src="public/js/main.js"></script>
+      <script src="public/js/enquire.min.js"></script>
+       <script src="public/js/turn.min.js"></script>
+      <script type="text/javascript" src="public/js/main.js"></script>
 </body>
 
 </html>
