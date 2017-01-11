@@ -75,7 +75,7 @@ $(function ()
 			});
 
 			Handlebars.registerHelper('addShelf', function(a,opts) {
-				       let multiple = $(window).width() <1286 ? 1:2;
+				       let multiple = $(window).width() <1286 || $(window).height() <520 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
 					    	  return opts.fn(this);
 						    else
@@ -106,12 +106,11 @@ $(function ()
 		        }
 		    });
 		      	//scale books height 
-		      enquire.register("screen and (max-height: 620px)", {
+		      enquire.register("screen and (max-height: 520px)", {
 		        match : function() {
 		          if(searchTerm !==""){
 		                renderWiki();
 		                addEvents(290);
-		               
 		           }	
 		        },
 		        unmatch : function() {
