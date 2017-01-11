@@ -210,15 +210,18 @@ $(function ()
 								autoCenter: true,
 								duration:800
 							}
-
-						);		
+						);	
 			        });
    }
 	function getWikiInfo(query){
 			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
 				    searchItems = result;
+				    $("#wikiInfo").animate({
+				          scrollTop: 0
+				     }, 1000);
 				    renderWiki();
 			     	addEvents();
+			     	$("#flipper0").turn("page", 2);
 			});
 	}
 	function animateWikiInfo(){
