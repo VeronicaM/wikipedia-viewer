@@ -6,7 +6,7 @@
   src: url("../font/antique_book_cover/antique_book_cover.otf") format("opentype");
 }
 .input-group{
-  width: 30%; 
+  width: 50%; 
 }
 .searchInput{
     position: absolute;
@@ -110,7 +110,7 @@ body{
     width: 100%;
     overflow: auto;
     position: absolute;
-    top: 25%;
+    top: 32%;
     opacity: 0;
     transition: all 1s ease 0.6s;
     display: flex;

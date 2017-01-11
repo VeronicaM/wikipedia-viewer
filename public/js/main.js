@@ -225,7 +225,7 @@ $(function ()
 			});
 	}
 	function animateWikiInfo(){
-		 $(".searchInput").css("top","10%"); 	
+		 $(".searchInput").css("top","20%"); 	
 		 $("#wikiInfo").css("opacity","1");  	
 	}
 	 function getRandomWikis(){
