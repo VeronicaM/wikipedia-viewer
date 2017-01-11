@@ -127,16 +127,14 @@ body{
 }
 
 .extract{
-    padding-top: 10px;
-    padding-left: 20%;
-    padding-right: 3%;
+    padding-left: 17%;
+    padding-right: 4%;
     font-size: 17px;
-    overflow: auto;
-    height: 54%;
+    overflow: hidden;
     font-weight: 600;
     color: #730512;
     font-family: 'Goudy Bookletter 1911', serif;
-    height: 33%;
+    height: 64%;
     width: 97%;
 }
 

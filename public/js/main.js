@@ -105,23 +105,7 @@ $(function ()
 		           }      
 		        }
 		    });
-		      	//scale books height 
-		      enquire.register("screen and (max-height: 520px)", {
-		        match : function() {
-		          if(searchTerm !==""){
-		                renderWiki();
-		                addEvents(290);
-		           }	
-		        },
-		        unmatch : function() {
-		                if(searchTerm !==""){   
- 							renderWiki();
-		                    addEvents(321); 
-		                } 
-		                        
-		        }
-		    });
-
+	
 
 	  });
 	 function renderWiki(){
@@ -181,7 +165,7 @@ $(function ()
 		}	
 	}
 
-   function addEvents(height){
+   function addEvents(){
             //	  $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
 			        animateWikiInfo();
 			        $('[id^=flipper]').map(function(flipper){
@@ -194,7 +178,7 @@ $(function ()
 								  } 
 								},
 								width: 490,
-								height: height,
+								height: 290,
 								autoCenter: true,
 								duration:800
 							}
