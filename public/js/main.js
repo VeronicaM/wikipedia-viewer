@@ -87,10 +87,38 @@ $(function ()
 			    }
 			    return new Handlebars.SafeString('<h4 class="shortTitle">' +string+ '</h4>');
 			});
+		    Handlebars.registerHelper('splitInPages', function(title,extract) {
+			      let base = '<div> <a href="https://'+lang+'.wikipedia.org/wiki/'+title+'" target="_blank"> <h4 class="articleTitle">'+title+'</h4></a>';
+			      return  new Handlebars.SafeString(base+recursiveSplit(extract));
+			});
 		   Handlebars.registerHelper('getLang', function() {
 			    return lang;
 			});
 
+
+            function recursiveSplit(text){
+            	let build="", splitted =text.split(" ");
+            	if(splitted.length <=20){
+            		return '<div class="extract">'+text+'</div></div>';
+            	}
+            	else {
+            		let i = 20;
+	            	for(let split =0; split <= splitted.length;split+=i){
+	            		if(split!==0)
+	            		{
+	            			build+="<div>";
+	            		}
+	            		build += '<div class="extract">'+splitted.slice(split,i).join(" ")+'</div></div>';
+	            		
+	            		if((i+20) < splitted.length)
+	            		   i +=20;
+	            		else{
+	            			return build += '<div></div><div><div class="extract">'+splitted.slice(i).join(" ")+'</div></div>';
+	            		}
+	            	}
+	            	return build;
+            	}	
+            }
 		      enquire.register("screen and (max-width: 1290px)", {
 		        match : function() {
 		        	if(searchTerm !==""){

@@ -72,11 +72,8 @@
 					     <img data-imagetitle='{{pageimage}}' class="pic" src='#'/>
 					     <img class="loading" src="public/images/ico_loading.gif"/>
 			   	     </div>
-					<div>  
-					    <a href="https://{{#getLang}}{{/getLang}}.wikipedia.org/wiki/{{title}}" target="_blank"> 
-			   	        <h4 class="articleTitle">{{title}}</h4></a>
-					    <div class="extract">{{extract}}</div> 
-					 </div>
+			   	        {{#splitInPages title extract}}
+			   	    	 {{/splitInPages}} 
 				</div>
 			</div>
 

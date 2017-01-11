@@ -40,6 +40,7 @@
             filter: none;
             height: 100px; 
 }
+
 .icon{
     cursor:pointer;
     background-size:contain;
@@ -136,6 +137,7 @@ body{
     font-family: 'Goudy Bookletter 1911', serif;
     height: 64%;
     width: 97%;
+    margin-top: 44px;
 }
 
 .cover{
