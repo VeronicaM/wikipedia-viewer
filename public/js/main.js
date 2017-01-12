@@ -230,19 +230,29 @@ $(function ()
 	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
-	 	      let template = $("#randomResults").html();
-		      let compiledTemplate = Handlebars.compile(template);
-		       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {
-		       	         lang:lang,
-		       	         top:Math.round(Math.random()*200+100),
-		       	         left:Math.round(Math.random()*700+150),
-		       	         rotation: Math.round(Math.random()*30+10)
-		       	      }; });
-		      
-		       let placeholder = {wikis:mockA};
-		      $("#wikiInfo").html(compiledTemplate(placeholder));
-		    	animateWikiInfo();
-		      $(".draggable").draggable();
+
+	 		  $.getJSON("./functions.php?trivia=true&num=5", function(result){
+	 		  	   console.log('trivia',result);
+		 	      let template = $("#randomResults").html();
+			      let compiledTemplate = Handlebars.compile(template);
+			       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {
+			       	         lang:lang,
+			       	         top:Math.round(Math.random()*200+100),
+			       	         left:Math.round(Math.random()*700+150),
+			       	         //rotation: Math.round(Math.random()*30+10),
+			       	         question:decodeURIComponent(result[i].question),
+			       	         choices:result[i].choices.map(i=>decodeURIComponent(i))
+			       	      }; });
+			      
+			       let placeholder = {wikis:mockA};
+			      $("#wikiInfo").html(compiledTemplate(placeholder));
+			    	animateWikiInfo();
+			    	$(".card").on('click',function(e){
+			    		console.log(e);	
+			    	})
+			      $(".draggable").draggable();
+		      });	
+
 	 }
    
 });

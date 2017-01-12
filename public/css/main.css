@@ -98,11 +98,11 @@ body{
 }
 .card{
     background-color: darkorange;
-    opacity: 0.9;
+    opacity: 1;
     color: white;
-    -webkit-filter: blur(1px);
-    filter: blur(1px);
     border-radius: 10px;
+    min-width: 200px;
+    min-height: 160px;
 }
 .card-container{
     width: 17%;
