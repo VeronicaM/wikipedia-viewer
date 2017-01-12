@@ -1,7 +1,6 @@
   <?php
       session_start();
       function getWikiInfo(){
-      
            $wikiInfo = file_get_contents("https://".$_GET['lang'].".wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=".urlencode($_GET['search']));
                
            $response = json_decode($wikiInfo);
@@ -14,30 +13,38 @@
     }
 
     function getTrivia(){
-        $categories = array(17,10,19,18,20,22,23,27, 30, 31, 32);
-        $category= $categories[rand(0,11)];
-        $response = file_get_contents("https://opentdb.com/api.php?amount=".$_GET['num']."&difficulty=easy&type=multiple&encode=url3986&category=".$category);
-        $response = json_decode($response,true);
-        $_SESSION["trivia"] = $response;
+        $_SESSION['trivia'] = array();
+        $categories = array(10,17,18,19,20,22,23,27,30,31,32);
+        $categories_names = array("Books","Science","Computers","Mathematics","Mythology","Geography","History","Animals","Gadgets","Anime","Animation");
         $result = array();
-        for($i=0;$i<count($response["results"]);$i++){
-           $result[$i]["question"] = $response["results"][$i]["question"];
-           $result[$i]["choices"] = $response["results"][$i]["incorrect_answers"];
-           array_push($result[$i]["choices"],$response["results"][$i]["correct_answer"]);
+        for($i=0;$i<$_GET["num"];$i++){
+           $randomNum = rand(0,10);
+           $categoryNum= $categories[$randomNum];
+           $categoryName = $categories_names[$randomNum];
+           $response = file_get_contents("https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple&encode=url3986&category=".$categoryNum);
+           array_push($_SESSION["trivia"], $response);
+           $response = json_decode($response,true);
+           $result[$i]["question"] = $response["results"][0]["question"];
+           $result[$i]["choices"] = $response["results"][0]["incorrect_answers"];
+           array_push($result[$i]["choices"],$response["results"][0]["correct_answer"]);
            shuffle($result[$i]["choices"]);
+           $result[$i]["category"] = $categoryName;
         }
         return json_encode($result);
    }
    function checkTrivia(){
-       if($_SESSION["trivia"]["results"][$_GET['triviaId']]["correct_answer"]  == $_GET['triviaAnswer']){
+        $question = json_decode($_SESSION["trivia"][$_GET['triviaId']],true); 
+       if($question['results'][0]['correct_answer']  == $_GET['triviaAnswer']){
          return true;
        }
-       else return $_SESSION["trivia"]["results"][$_GET['triviaId']]["correct_answer"];
+       else{
+         return json_encode($question['results'][0]['correct_answer']) ;
+       } 
    }
    function getImageURL(){
       $response = file_get_contents("https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&format=json&iiprop=url|size&iiurlwidth=120&iiurlheight=120&titles=File:".$_GET['img']);
             $response = json_decode($response);
-           return $response;
+        return $response;
    }
     if(isset($_GET['autocomplete'])){
       echo json_encode(getAutocomplete()[1]);

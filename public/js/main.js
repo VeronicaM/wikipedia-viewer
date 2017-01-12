@@ -235,22 +235,40 @@ $(function ()
 	 		  	   console.log('trivia',result);
 		 	      let template = $("#randomResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
-			       let mockA = Array.apply(null, Array(5)).map(function (x, i) { return {
+			      let positionTop = 100, positionLeft=0;
+
+			       let mockA = Array.apply(null, Array(5)).map(function (x, i) { 
+			       	      positionLeft = i!==0? positionLeft+260:0;
+			       	      return {
 			       	         lang:lang,
-			       	         top:Math.round(Math.random()*200+100),
-			       	         left:Math.round(Math.random()*700+150),
-			       	         //rotation: Math.round(Math.random()*30+10),
+			       	         top:Math.round(positionTop),
+			       	         left:Math.round(Math.random()*100+positionLeft),
 			       	         question:decodeURIComponent(result[i].question),
-			       	         choices:result[i].choices.map(i=>decodeURIComponent(i))
-			       	      }; });
+			       	         choices:result[i].choices.map(i=>decodeURIComponent(i)),
+			       	         category: result[i].category
+			       	      };
+			       	 });
 			      
 			       let placeholder = {wikis:mockA};
 			      $("#wikiInfo").html(compiledTemplate(placeholder));
 			    	animateWikiInfo();
 			    	$(".card").on('click',function(e){
-			    		console.log(e);	
+			    		//console.log(e);	
 			    	})
-			      $(".draggable").draggable();
+			        $(".unlock").on('click',function(e){
+			        	e.preventDefault();
+			        	let answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0]
+			          if (!answerInput) {
+						       alert('Nothing is checked!');
+					   }
+					   else {
+					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId=0", function(result){
+						      console.log('correct answer is'+result);
+					      });	
+					    }
+			    		//console.log(e);	
+			    	})
+			     // $(".draggable").draggable();
 		      });	
 
 	 }
