@@ -75,7 +75,7 @@ $(function ()
 			});
 
 			Handlebars.registerHelper('addShelf', function(a,opts) {
-				       let multiple = $(window).width() <1286 || $(window).height() <520 ? 1:2;
+				       let multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
 					    	  return opts.fn(this);
 						    else
@@ -88,7 +88,7 @@ $(function ()
 			    return new Handlebars.SafeString('<h4 class="shortTitle">' +string+ '</h4>');
 			});
 		    Handlebars.registerHelper('splitInPages', function(title,extract) {
-			      let base = '<div> <a href="https://'+lang+'.wikipedia.org/wiki/'+title+'" target="_blank"> <h4 class="articleTitle">'+title+'</h4></a>';
+			      let base = '<div> <a href="https://'+lang+'.wikipedia.org/wiki/'+title+'" target="_blank"> <div><h4 class="articleTitle">'+title+'</h4></div></a>';
 			      return  new Handlebars.SafeString(base+recursiveSplit(extract));
 			});
 		   Handlebars.registerHelper('getLang', function() {
@@ -110,7 +110,7 @@ $(function ()
 	            		}
 	            		build += '<div class="extract">'+splitted.slice(split,i).join(" ")+'</div></div>';
 	            		
-	            		if((i+20) < splitted.length)
+	            		if((i+40) < splitted.length)
 	            		   i +=20;
 	            		else{
 	            			return build += '<div></div><div><div class="extract">'+splitted.slice(i).join(" ")+'</div></div>';
@@ -162,15 +162,15 @@ $(function ()
 				closeBooks(flipper);
 				 let pageImg = me.querySelectorAll('img')[0]; 	
 				    	//set the loading image to appear
-				  if(pageImg.attributes[2].nodeValue.indexOf('#') >= 0) {
-				    me.querySelectorAll('img')[1].attributes[0].nodeValue="loading setVisible";
+				  if(pageImg.src.indexOf('#') >= 0) {
+				    me.querySelectorAll('img')[1].className="loading setVisible";
 				  } 
 				  else{
-						  me.querySelectorAll('img')[1].attributes[0].nodeValue="loading loaded";
+						  me.querySelectorAll('img')[1].className="loading loaded";
 				  }
 
 		      //get the data-imageTitle value to query the image from wikipedia
-		       $.getJSON("./functions.php?img="+pageImg.attributes[0].nodeValue,function(result){
+		       $.getJSON("./functions.php?img="+pageImg.dataset.imagetitle,function(result){
 		       	
  					let key = Object.keys(result.query.pages)[0];
  					let source ="",orientation="appear landscape";
@@ -183,12 +183,12 @@ $(function ()
  						source = "public/images/cat.png";
  					}
  					//set the source with the identified value
-						 pageImg.attributes[2].nodeValue=source;
+						 pageImg.src=source;
 						 //set the loading image to disappear 
-						 me.querySelectorAll('img')[1].attributes[0].nodeValue="loading loaded";
+						 me.querySelectorAll('img')[1].className="loading loaded";
 		    	
 						//set the class
- 				     pageImg.attributes[1].nodeValue= pageImg.attributes[1].nodeValue+" "+orientation;
+ 				     pageImg.className= pageImg.className+" "+orientation;
 				});	
 		}	
 	}

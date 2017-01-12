@@ -49,13 +49,12 @@
 
 .icon{
     cursor:pointer;
-    -webkit-background-size:contain;
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
     width:100px;height:70px;
     -webkit-transition: all 100ms ease-in;
-            transition: all 100ms ease-in;
+    transition: all 100ms ease-in;
      -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
      -ms-filter: brightness(1.8) grayscale(1) opacity(.7);
      -o-filter: brightness(1.8) grayscale(1) opacity(.7);
@@ -72,19 +71,16 @@
 
 
 body{
-  -webkit-background-size: cover;
   background-size: cover;
   background-repeat: none;
   background-image: url('../images/wood-texture.png');
  }
 .languages{
       display: -webkit-box;
-      display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-    -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
-    justify-content: space-around;
+        justify-content: space-around;
     list-style: none;
 }
 .languages a{
@@ -101,21 +97,19 @@ body{
     opacity: 0.9;
     color: white;
     -webkit-filter: blur(1px);
-    filter: blur(1px);
+            filter: blur(1px);
     border-radius: 10px;
 }
 .card-container{
     width: 17%;
     position: absolute;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .lock{
@@ -127,9 +121,8 @@ body{
     z-index: 2;
     color: brown;
     font-weight: 800;
-    -webkit-align-self: flex-end;
     -ms-flex-item-align: end;
-    align-self: flex-end;
+        align-self: flex-end;
 }
 #wikiInfo{
     height: 70vh;
@@ -141,25 +134,20 @@ body{
     -webkit-transition: all 1s ease 0.6s;
     transition: all 1s ease 0.6s;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+        flex-wrap: wrap;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
 .articleTitle{
     margin-top: 13% !important;
@@ -197,9 +185,6 @@ body{
     margin: auto 0;
     font-family: 'Antique Book Cover';
     -webkit-transition: all 0.1s linear 0.2s;
-    -moz-transition: all 0.1s linear 0.2s;
-    -ms-transition: all 0.1s linear 0.2s;
-    -o-transition: all 0.1s linear 0.2s;
     transition: all 0.1s linear 0.2s;
     opacity: 1;
     width: 78%;
@@ -239,10 +224,7 @@ body{
  opacity: 0;
 }
 .page img,{
-    -webkit-transition: all 0.2s linear;
-    -ms-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
     transition: all 0.2s linear;
     top: 14%;
     position: absolute;
@@ -269,10 +251,9 @@ body{
     height: 71%;
      left: 20%;
     opacity: 1 !important;
-     -webkit-box-shadow: 0px 0px 0px 2px #AA6C19;
-       -ms-box-shadow:  0px 0px 0px 2px #AA6C19;
-       -o-box-shadow:  0px 0px 0px 2px #AA6C19;
-       box-shadow: 0px 0px 0px 2px #AA6C19;
+     -ms-box-shadow:  0px 0px 0px 2px #AA6C19;
+     -o-box-shadow:  0px 0px 0px 2px #AA6C19;
+     box-shadow: 0px 0px 0px 2px #AA6C19;
 }
 .appear.landscape{
     width: 78%;
@@ -280,10 +261,9 @@ body{
     left: 12%;
     opacity: 1 !important;
     border-radius: 8px;
-     -webkit-box-shadow: 0px 0px 0px 2px #AA6C19;
-        -ms-box-shadow:  0px 0px 0px 2px #AA6C19;
-         -o-box-shadow:  0px 0px 0px 2px #AA6C19;
-        box-shadow: 0px 0px 0px 2px #AA6C19;
+     -ms-box-shadow:  0px 0px 0px 2px #AA6C19;
+      -o-box-shadow:  0px 0px 0px 2px #AA6C19;
+     box-shadow: 0px 0px 0px 2px #AA6C19;
 }
 
 .shelf{
@@ -297,10 +277,8 @@ body{
     height: 25px;
     padding-left: -6px;
     -webkit-perspective: 500px;
-       -ms-perspective: 500px;
-        perspective: 500px;
+            perspective: 500px;
     -webkit-transform: skew(-63deg);
-    -ms-transform: skew(-63deg);
     transform: skew(-63deg);
 }
 @media only screen and (max-width : 1286px)  {
