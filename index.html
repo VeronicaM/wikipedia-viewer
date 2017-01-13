@@ -84,34 +84,24 @@
 
 	      <script id="randomResults" type="text/x-handlebars-template">​
 	          {{#each wikis}}
-	          <div class="card-container draggable" style="top:{{top}}px;left: {{left}}px;transform: rotate({{rotation}}deg); ">
-	                <i class="fa fa-lock lock"></i>
-			   	    <div class="card">
-			   	    	    <p style="text-align: center;">
-			   	    	 	     {{question}}
-			   	    	 	<p>
-			   	    	 	<div class="row">
-			   	    	     <div class="col-xs-6">	
-			   	    	     <div style="z-index: 10"	>
-			   	    	   
-								<form data-triviaId="{{@index}}" action="">
-								{{#each choices}}
-								  <input  type="radio" name="answer" value="{{this}}"> {{this}}<br>
-								{{/each}}	
-								<button class="unlock"> Unlock</button>
-								</form>
-
-			   	    	   	  </div>
-			   	    	 	</div>
-			   	    	 	<div class="col-xs-6">	
-			   	    	   
-			   	    	 	</div>
-			   	    	 	</div>
-			   	    	 	</p>
-			   	    	 </p>
-			   	   		 <a href="https://{{lang}}.wikipedia.org/wiki/Special:RandomInCategory/{{category}}" target="_blank" title="Special:RandomInCategory/{{Category}}" >Random Page</a>
-			   	    </div>
-		   	    </div>
+	            <div class="card-container">
+	   	    	 	  <p>
+	   	    	 	     <p style="text-align: center;">
+	   	    	 	       {{question}}
+	   	    	     	</p>
+						<form data-triviaId="{{@index}}" action="">
+						{{#each choices}}
+						  <input  type="radio" name="answer" value="{{this}}"> {{this}}<br>
+						{{/each}}	
+						<button class="unlock"> Unlock</button>
+						</form>
+	   	    	   	  	<a href="https://{{lang}}.wikipedia.org/wiki/Special:RandomInCategory/{{category}}" target="_blank" title="Special:RandomInCategory/{{Category}}">Random Page</a>
+	   	    	   	  </p>
+			   	    <div class="overlay">
+				         <i class="fa fa-lock lock"></i>
+				    </div>  
+			   	 </div>
+			   	  
 			  {{/each}}
 	      </script>
 

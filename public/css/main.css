@@ -96,43 +96,58 @@ body{
   background-color: #F2E1C3;
   padding: 10px;
 }
-.card{
-    background-color: darkorange;
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(65, 0, 0, 0.85);
+    z-index:9999;
+    color:white;
+    border-radius: 13px;
     opacity: 1;
-    color: white;
-    border-radius: 10px;
-    min-width: 200px;
-    min-height: 160px;
+}
+.overlay {
+    text-align: center;
+}
+ 
+.overlay:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
+.lock:hover{
+  font-size: 80px;
+  color: #A36A16;
+  cursor: pointer; cursor: hand;
+}
+/*.overlay:not( :hover ){  
+  opacity: 1;
+  z-index: 9999;
+}*/
+.visible{
+  opacity: 0;
+  z-index: -1;
 }
 .card-container{
-    width: 17%;
-    position: absolute;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    min-width: 250px;
+    width: 250px;
+    height: 200px;
+    min-height: 200px;
+    position: relative;
+    margin: 100px 106px 30px 0;
+    border-radius: 13px;
 }
 
 .lock{
-    float: right;
-    position: relative;
-    top: 46px;
-    right: 10px;
-    font-size: 35px !important;
-    z-index: 2;
-    color: brown;
-    font-weight: 800;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
+    font-size: 65px;
+    color: white;
 }
 #wikiInfo{
-    height: 70vh;
+    height: 62vh;
     width: 100%;
     overflow: auto;
     position: absolute;
@@ -260,6 +275,7 @@ body{
   opacity: 0 !important;
   visibility: hidden;
 }
+
 .setVisible{
  opacity: 0.7 !important;
   visibility: visible ;
@@ -303,14 +319,7 @@ body{
     -ms-transform: skew(-63deg);
     transform: skew(-63deg);
 }
-@media only screen and (max-width : 1286px)  {
-  .wrapper{
-      width: 100%;
-      padding-left: 20%;
-   }
-}
-
-@media only screen and (max-height : 620px)  {
+@media only screen and (max-width : 1250px)  {
   .wrapper{
       width: 100%;
       padding-left: 20%;

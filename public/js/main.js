@@ -122,6 +122,7 @@ $(function ()
 		      enquire.register("screen and (max-width: 1290px)", {
 		        match : function() {
 		        	if(searchTerm !==""){
+
 		        	  renderWiki();
 		              addEvents();	
 		        	} 
@@ -231,18 +232,13 @@ $(function ()
 	 function getRandomWikis(){
 	 		  isRandom = true;
 
-	 		  $.getJSON("./functions.php?trivia=true&num=5", function(result){
+	 		  $.getJSON("./functions.php?trivia=true&num=3", function(result){
 	 		  	   console.log('trivia',result);
 		 	      let template = $("#randomResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
-			      let positionTop = 100, positionLeft=0;
-
-			       let mockA = Array.apply(null, Array(5)).map(function (x, i) { 
-			       	      positionLeft = i!==0? positionLeft+260:0;
+			       let mockA = Array.apply(null, Array(3)).map(function (x, i) { 
 			       	      return {
 			       	         lang:lang,
-			       	         top:Math.round(positionTop),
-			       	         left:Math.round(Math.random()*100+positionLeft),
 			       	         question:decodeURIComponent(result[i].question),
 			       	         choices:result[i].choices.map(i=>decodeURIComponent(i)),
 			       	         category: result[i].category
@@ -252,9 +248,22 @@ $(function ()
 			       let placeholder = {wikis:mockA};
 			      $("#wikiInfo").html(compiledTemplate(placeholder));
 			    	animateWikiInfo();
-			    	$(".card").on('click',function(e){
-			    		//console.log(e);	
-			    	})
+			 
+			    	$('.lock').hover(function() {
+					   $(this).toggleClass("fa-unlock-alt");
+					});
+					$('.lock').on('click',function(e){
+						$(".overlay").removeClass("visible");
+						$(e.target).parent().toggleClass("visible")
+					})
+					$('#wikiInfo').on('click',function(e){
+						if(!$(e.target).closest("div").is(".card-container") && !$(e.target).closest("div").is(".overlay"))
+						{
+						   $(".overlay").removeClass("visible");
+						}
+						
+					})
+					
 			        $(".unlock").on('click',function(e){
 			        	e.preventDefault();
 			        	let answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0]
@@ -262,7 +271,7 @@ $(function ()
 						       alert('Nothing is checked!');
 					   }
 					   else {
-					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId=0", function(result){
+					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid, function(result){
 						      console.log('correct answer is'+result);
 					      });	
 					    }
