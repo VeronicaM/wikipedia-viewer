@@ -209,7 +209,7 @@ body{
 }
 #wikiInfo{
     overflow-x: hidden !important;
-     height: 71vh;
+     height: 69vh;
     width: 100%;
     position: absolute;
     top: 21%;
@@ -378,7 +378,7 @@ body{
    #wikiInfo{
       flex-direction: column;
       flex-wrap: nowrap;
-      padding-left: 20px;
+      padding-left: 70px;
    }
 
   .card-container button {
