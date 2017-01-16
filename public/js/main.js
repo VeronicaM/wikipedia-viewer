@@ -73,7 +73,7 @@ $(function ()
  				 }
 
 			});
-			$(".mCustomScrollbar").mCustomScrollbar();
+		
 			Handlebars.registerHelper('addShelf', function(a,opts) {
 				       let multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
@@ -121,14 +121,13 @@ $(function ()
             }
 		      enquire.register("screen and (max-width: 1290px)", {
 		        match : function() {
-		        	if(searchTerm !==""){
-
+		        	if(!isRandom &&searchTerm!=""){
 		        	  renderWiki();
 		              addEvents();	
 		        	} 
 		        },
 		        unmatch : function() {
-		           if(searchTerm !==""){
+		           if(!isRandom&&searchTerm!=""){
 		              renderWiki();
 		              addEvents();
 		           }      
@@ -141,7 +140,6 @@ $(function ()
 	       let template = $("#searchResults").html();
 	      let compiledTemplate = Handlebars.compile(template);   
 	      $("#wikiInfo").html(compiledTemplate(searchItems));	 
-	       $(".mCustomScrollbar").mCustomScrollbar();
 	 }
 	function reset(){
 		 $("#wikiInfo").html("");
