@@ -225,7 +225,7 @@ $(function ()
 			});
 	}
 	function animateWikiInfo(){
-		 $(".searchInput").css("top","20%"); 	
+		 $(".searchInput").css({"top":"7%","left":"10px"}); 	
 		 $("#wikiInfo").css("opacity","1");  	
 
 	}
