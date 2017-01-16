@@ -124,18 +124,50 @@ body{
   color: #A36A16;
   cursor: pointer; cursor: hand;
 }
-/*.overlay:not( :hover ){  
-  opacity: 1;
-  z-index: 9999;
-}*/
+.card-container h5{
+  color:rgba(65, 0, 0, 0.85);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.card-container form{
+     margin-left:25px;    
+     margin-right: 5px;
+}
+.final{
+    position: relative;
+    top: 19px;
+    left: 5%;
+    font-size: 1.25em;
+}
+.success{
+    color: green;
+}
+.wrong{
+  color:#CE1919;
+}
+
+.card-container button{
+    position: relative;
+    left: 30%;
+    margin-top:10px;
+    border-radius: 6px;
+    background-color: rgba(65, 0, 0, 0.85);
+    color: #ECCAAE;
+    padding: 5px;
+}
+.card-container button{
+    background-color: #A56825;
+}
 .visible{
   opacity: 0;
   z-index: -1;
 }
 .card-container{
+    padding: 10px;
+    font-family: sans-serif;
     min-width: 250px;
+    background-color: #ECCAAE;
     width: 250px;
-    height: 200px;
     min-height: 200px;
     position: relative;
     margin: 100px 106px 30px 0;

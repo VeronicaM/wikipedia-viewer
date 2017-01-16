@@ -84,20 +84,20 @@
 
 	      <script id="randomResults" type="text/x-handlebars-template">​
 	          {{#each wikis}}
-	            <div class="card-container">
+	            <div class="card-container" >
 	   	    	 	  <p>
-	   	    	 	     <p style="text-align: center;">
+	   	    	 	     <h5 style="text-align: center;">
 	   	    	 	       {{question}}
-	   	    	     	</p>
-						<form data-triviaId="{{@index}}" action="">
-						{{#each choices}}
-						  <input  type="radio" name="answer" value="{{this}}"> {{this}}<br>
-						{{/each}}	
+	   	    	     	</h5>
+						<form data-category={{category}}  data-triviaId="{{@index}}" action="">
+					    	{{#each choices}}
+							  <input  type="radio" name="answer" value="{{this}}"> {{this}}<br>
+							{{/each}}
+
 						<button class="unlock"> Unlock</button>
 						</form>
-	   	    	   	  	<a href="https://{{lang}}.wikipedia.org/wiki/Special:RandomInCategory/{{category}}" target="_blank" title="Special:RandomInCategory/{{Category}}">Random Page</a>
 	   	    	   	  </p>
-			   	    <div class="overlay">
+			   	    <div data-answered="false" class="overlay">
 				         <i class="fa fa-lock lock"></i>
 				    </div>  
 			   	 </div>

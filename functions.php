@@ -15,7 +15,7 @@
     function getTrivia(){
         $_SESSION['trivia'] = array();
         $categories = array(10,17,18,19,20,22,23,27,30,31,32);
-        $categories_names = array("Books","Science","Computers","Mathematics","Mythology","Geography","History","Animals","Gadgets","Anime","Animation");
+        $categories_names = array("Books","Scientists","Computers","Mathematics","Mythology","Geography","History","Animals","Gadgets","Anime","Animation");
         $result = array();
         for($i=0;$i<$_GET["num"];$i++){
            $randomNum = rand(0,10);
@@ -34,11 +34,12 @@
    }
    function checkTrivia(){
         $question = json_decode($_SESSION["trivia"][$_GET['triviaId']],true); 
-       if($question['results'][0]['correct_answer']  == $_GET['triviaAnswer']){
-         return true;
+        $check = urldecode($question['results'][0]['correct_answer']) == $_GET['triviaAnswer']; 
+       if( $check == 1){
+         return json_encode("correct");
        }
        else{
-         return json_encode($question['results'][0]['correct_answer']) ;
+         return json_encode(urldecode($question['results'][0]['correct_answer'])) ;
        } 
    }
    function getImageURL(){

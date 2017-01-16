@@ -253,26 +253,35 @@ $(function ()
 					   $(this).toggleClass("fa-unlock-alt");
 					});
 					$('.lock').on('click',function(e){
-						$(".overlay").removeClass("visible");
+						$(".overlay[data-answered='false']").removeClass("visible");
 						$(e.target).parent().toggleClass("visible")
 					})
 					$('#wikiInfo').on('click',function(e){
 						if(!$(e.target).closest("div").is(".card-container") && !$(e.target).closest("div").is(".overlay"))
 						{
-						   $(".overlay").removeClass("visible");
+						   $(".overlay[data-answered='false']").removeClass("visible");
 						}
 						
 					})
 					
 			        $(".unlock").on('click',function(e){
 			        	e.preventDefault();
-			        	let answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0]
+			        	let answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0];
+			        	let me = this;
 			          if (!answerInput) {
 						       alert('Nothing is checked!');
 					   }
 					   else {
 					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid, function(result){
-						      console.log('correct answer is'+result);
+						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
+						      if(result=="correct"){
+						      	  let url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
+						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' is correct <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category+'</a></p>'); 
+						      }
+						      else{
+						      	   $(me.parentElement).html('<p class="final wrong">Nope! The answer is <br> '+result+'</p>');	
+						      }
+						       
 					      });	
 					    }
 			    		//console.log(e);	
