@@ -78,6 +78,7 @@ body{
   background-image: url('../images/wood-texture.png');
  }
 .languages{
+      margin-top: -9px;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -90,9 +91,10 @@ body{
 .languages a{
   text-decoration: none;
   text-transform: uppercase;
+  color: #EF4A1D  !important;
 }
 .active{
-  color: ##4A817F;
+  color: #EF4A1D !important;
   background-color: #F2E1C3;
   padding: 10px;
 }
@@ -131,9 +133,9 @@ body{
 }
 .loader {
     display: none;
-    border: 16px solid #5A1E1A;
+    border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #3498db;
+    border-top: 16px solid #5A1E1A;
     width: 120px;
     position: absolute;
     top: 45%;
@@ -206,9 +208,9 @@ body{
     color: white;
 }
 #wikiInfo{
+    overflow-x: hidden !important;
     height: 62vh;
     width: 100%;
-    overflow: auto;
     position: absolute;
     top: 32%;
     opacity: 0;
@@ -381,6 +383,10 @@ body{
 @media only screen and (max-width : 1250px)  {
   .wrapper{
       width: 100%;
-      padding-left: 20%;
+      padding-left: 10%;
+   }
+   .languages a{
+    padding-right: 10px;
+    font-size: 11px;
    }
 }

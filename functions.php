@@ -15,7 +15,7 @@
     function getTrivia(){
         $_SESSION['trivia'] = array();
         $categories = array(10,17,18,19,20,22,23,27,30,31,32);
-        $categories_names = array("Books","Scientists","Computers","Mathematics","Mythology","Geography","History","Animals","Gadgets","Anime","Animation");
+        $categories_names = array("Books","Scientists","Computers","Mathematics","Mythology","Geography","History","Animals","Electronics","Anime","Animation");
         $result = array();
         for($i=0;$i<$_GET["num"];$i++){
            $randomNum = rand(0,10);

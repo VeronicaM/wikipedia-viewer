@@ -40,7 +40,7 @@ $(function ()
 				    }
 			});
 		
-		//	$('body').css("background-image","url('public/images/newspaper_texture"+Math.round((Math.random()*4+1))+".jpg')");
+		
 			//identify user preffered language
 			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
 			if(languages.indexOf(lang) >=0){
@@ -73,7 +73,7 @@ $(function ()
  				 }
 
 			});
-
+			$(".mCustomScrollbar").mCustomScrollbar();
 			Handlebars.registerHelper('addShelf', function(a,opts) {
 				       let multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
@@ -140,7 +140,8 @@ $(function ()
 	 function renderWiki(){
 	       let template = $("#searchResults").html();
 	      let compiledTemplate = Handlebars.compile(template);   
-	      $("#wikiInfo").html(compiledTemplate(searchItems));	   
+	      $("#wikiInfo").html(compiledTemplate(searchItems));	 
+	       $(".mCustomScrollbar").mCustomScrollbar();
 	 }
 	function reset(){
 		 $("#wikiInfo").html("");
@@ -195,7 +196,7 @@ $(function ()
 	}
 
    function addEvents(){
-            //	  $(".extract").mCustomScrollbar({ scrollbarPosition: "inside",autoHideScrollbar: true, });
+                 
 			        animateWikiInfo();
 			        $('[id^=flipper]').map(function(flipper){
 			             $("#flipper"+flipper).turn(
@@ -228,6 +229,7 @@ $(function ()
 	function animateWikiInfo(){
 		 $(".searchInput").css("top","20%"); 	
 		 $("#wikiInfo").css("opacity","1");  	
+
 	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
@@ -249,8 +251,6 @@ $(function ()
 			      
 			       let placeholder = {wikis:mockA};
 			       $("#wikiInfo").html(compiledTemplate(placeholder));
-			    	
-			 
 			    	$('.lock').hover(function() {
 					   $(this).toggleClass("fa-unlock-alt");
 					});
