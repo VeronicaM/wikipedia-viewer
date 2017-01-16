@@ -231,9 +231,11 @@ $(function ()
 	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
-
+	 		  animateWikiInfo();
+	 		  $('#wikiInfo').html('');
+	 		  $(".loader").toggleClass('show');
 	 		  $.getJSON("./functions.php?trivia=true&num=3", function(result){
-	 		  	   console.log('trivia',result);
+	 		  	$(".loader").toggleClass('show');
 		 	      let template = $("#randomResults").html();
 			      let compiledTemplate = Handlebars.compile(template);
 			       let mockA = Array.apply(null, Array(3)).map(function (x, i) { 
@@ -246,8 +248,8 @@ $(function ()
 			       	 });
 			      
 			       let placeholder = {wikis:mockA};
-			      $("#wikiInfo").html(compiledTemplate(placeholder));
-			    	animateWikiInfo();
+			       $("#wikiInfo").html(compiledTemplate(placeholder));
+			    	
 			 
 			    	$('.lock').hover(function() {
 					   $(this).toggleClass("fa-unlock-alt");
@@ -284,9 +286,9 @@ $(function ()
 						       
 					      });	
 					    }
-			    		//console.log(e);	
+			    			
 			    	})
-			     // $(".draggable").draggable();
+			     
 		      });	
 
 	 }
