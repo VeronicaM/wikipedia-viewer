@@ -88,15 +88,17 @@
 	          {{#each wikis}}
 	            <div class="card-container" >
 	   	    	 	  <p>
-	   	    	 	     <h5 style="text-align: center;">
+	   	    	 	     <h5 class="translate" data-isQ="true" data-value="{{question}}" style="text-align: center;">
 	   	    	 	       {{question}}
 	   	    	     	</h5>
 						<form data-category={{category}}  data-triviaId="{{@index}}" action="">
 					    	{{#each choices}}
-							  <input  type="radio" name="answer" value="{{this}}"> {{this}}<br>
+							  <input  type="radio" name="answer" value="{{this}}"> 
+							  <span class="translate" data-value="{{this}}">{{this}}</span>
+			   	              <br>
 							{{/each}}
 
-						<button class="unlock"> Unlock</button>
+						<button class="unlock translate"> Unlock</button>
 						</form>
 	   	    	   	  </p>
 			   	    <div data-answered="false" class="overlay">
@@ -109,18 +111,14 @@
 
 	<link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css"/>
 	<link href="public/css/bootstrap.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="public/css/jquery.mCustomScrollbar.css" />
 	<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
-	  <link rel="stylesheet" href="./public/css/animate.css">
 	<link href="public/css/sticky-footer.css" rel="stylesheet" />
       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="public/js/jquery-ui.min.js"></script>
-      <script src="public/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="public/js/bootstrap.min.js"></script>
       <script src="public/js/handlebars-v4.0.5.js"></script>
       <script src="https://use.fontawesome.com/222bdb96f4.js"></script>
-      <script src="public/js/jquery.ui.touch-punch.min.js"></script>
       <script src="public/js/enquire.min.js"></script>
        <script src="public/js/turn.min.js"></script>
       <script type="text/javascript" src="public/js/main.js"></script>

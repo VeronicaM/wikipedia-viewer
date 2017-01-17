@@ -1,6 +1,7 @@
 $(function () 
  {
      let lang="",
+         prev_lang="",
 	     isRandom =false,
 	     searchTerm="",
 	     searchItems ="",
@@ -61,19 +62,20 @@ $(function ()
 			$("#refresh").click(function(e){
  				reset();
 			});
-			$(".languages a").click(function(e){
+			$(".languages li > a").click(function(e){
  				lang=e.currentTarget.id;
+ 				prev_lang=$('.languages a.active')[0].id;
  				$('.languages a').removeClass('active')
  				 $(this).addClass("active");
- 				 if(isRandom){
- 				 	getRandomWikis();
+ 				 if(isRandom) {
+ 				 	translateText(".translate");
  				 }
  				 else if(searchTerm !==""){
  					getWikiInfo(searchTerm);
  				 }
 
 			});
-		
+  	
 			Handlebars.registerHelper('addShelf', function(a,opts) {
 				       let multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
@@ -229,6 +231,27 @@ $(function ()
 		 $("#wikiInfo").css("opacity","1");  	
 
 	}
+	function isNumber(n) {
+ 	  return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+	function translateText(classString){
+		     $.each($(classString),function(key, value){
+		     	let text=value.innerHTML.trim();
+		     	if(value.dataset.value){
+		     		text=value.dataset.value;	
+		     	}
+		     	if(!isNumber(text)){
+		     		$.getJSON("./functions.php?text="+encodeURIComponent(text)+"&lang=en-"+lang, function(result){
+					   if(value.dataset.isq=="true"){
+					   	 value.innerHTML = '<a href="http://translate.yandex.com/" target="_blank"> Powered by Yandex.Translate</a><br/>'+result.text[0]; 	
+					   }else{
+					   	  value.innerHTML = result.text[0];
+					   }
+				 	}
+				  );		
+		        }
+		     });
+	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
 	 		  animateWikiInfo();
@@ -249,6 +272,9 @@ $(function ()
 			      
 			       let placeholder = {wikis:mockA};
 			       $("#wikiInfo").html(compiledTemplate(placeholder));
+			       if(lang!="en"){
+			       	  translateText(".translate");
+			       }
 			    	$('.lock').hover(function() {
 					   $(this).toggleClass("fa-unlock-alt");
 					});
@@ -276,12 +302,12 @@ $(function ()
 						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
 						      if(result=="correct"){
 						      	  let url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
-						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' is correct <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category+'</a></p>'); 
+						          $(me.parentElement).html('<p class="final success translate">'+ answerInput.value +' is correct <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category+'</a></p>'); 
 						      }
 						      else{
-						      	   $(me.parentElement).html('<p class="final wrong">Nope! The answer is <br> '+result+'</p>');	
+						      	   $(me.parentElement).html('<p class="final wrong translate">Nope! The answer is <br> '+result+'</p>');	
 						      }
-						       
+						       translateText(".final");
 					      });	
 					    }
 			    			

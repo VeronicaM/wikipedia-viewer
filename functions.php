@@ -32,6 +32,12 @@
         }
         return json_encode($result);
    }
+   function translateYandex(){
+     $url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170117T100740Z.47998d3b7c7cf041.d2ad568069da066ac21c64c7ec4f74d251d46251&text=".$_GET['text']."&lang=".$_GET['lang']."&format=plain";
+       $response = file_get_contents($url);
+        $response = json_decode($response);
+        return $response;
+   }
    function checkTrivia(){
         $question = json_decode($_SESSION["trivia"][$_GET['triviaId']],true); 
         $check = urldecode($question['results'][0]['correct_answer']) == $_GET['triviaAnswer']; 
@@ -44,7 +50,7 @@
    }
    function getImageURL(){
       $response = file_get_contents("https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&format=json&iiprop=url|size&iiurlwidth=120&iiurlheight=120&titles=File:".$_GET['img']);
-            $response = json_decode($response);
+        $response = json_decode($response);
         return $response;
    }
     if(isset($_GET['autocomplete'])){
@@ -58,6 +64,9 @@
     }
     else if(isset($_GET['checkTrivia'])){
       echo checkTrivia();
+    }
+    else if(isset($_GET['text'])){
+      echo json_encode(translateYandex());
     }
     else {
       echo json_encode(getWikiInfo());  

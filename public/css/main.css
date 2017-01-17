@@ -378,7 +378,7 @@ body{
    #wikiInfo{
       flex-direction: column;
       flex-wrap: nowrap;
-      padding-left: 70px;
+      padding-left: 30px;
    }
 
   .card-container button {
