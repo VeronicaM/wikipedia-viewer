@@ -36,7 +36,7 @@
             display: none;
 }
 .search{background-image:url('../images/wiki-logo-v2.svg');}
-.random{background-image:url('../images/dice.png');}
+.random{background-image:url('../images/dice-min.png');}
 .cc-selector input:active +.icon{opacity: .9;}
 .cc-selector input:checked +.icon{
     -webkit-filter: none;
@@ -75,7 +75,7 @@ body{
   -webkit-background-size: cover;
   background-size: cover;
   background-repeat: none;
-  background-image: url('../images/wood-texture.png');
+  background-image: url('../images/wood-texture-min.png');
  }
 .languages{
       margin-top: -9px;
@@ -240,14 +240,14 @@ body{
     font-family: 'Goudy Bookletter 1911', serif;
     height: 64%;
     width: 97%;
-    margin-top: 44px;
+    margin-top: 15px;
 }
 
 .cover{
-  background-image: url(../images/book-cover-02.png) !important;
+  background-image: url(../images/book-cover-02-min.png) !important;
 }
 .page{
- background-image: url(../images/texture_005.png);  
+ background-image: url(../images/texture_005-min.png);  
 }
 .page h4{
     font-size: 30px;
@@ -353,7 +353,7 @@ body{
     margin-bottom: 20px;
     border: 0;
     position: relative;
-    background-image: url(../images/wood-texture.png);
+    background-image: url(../images/wood-texture-min.png);
     border-top: 1px solid #eee;
     width: 100%;
     min-height: 25px;
