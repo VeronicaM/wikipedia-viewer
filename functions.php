@@ -16,6 +16,8 @@
         $_SESSION['trivia'] = array();
         $categories = array(10,17,18,19,20,22,23,27,30,31,32);
         $categories_names = array("Books","Scientists","Computers","Mathematics","Mythology","Geography","History","Animals","Electronics","Anime","Animation");
+         print_r(json_decode(translateYandex("test"),true));
+        print_r(json_decode(translateYandex("test"),true)[0]["code"]);
         $result = array();
         for($i=0;$i<$_GET["num"];$i++){
            $randomNum = rand(0,10);
@@ -24,18 +26,37 @@
            $response = file_get_contents("https://opentdb.com/api.php?amount=1&difficulty=easy&type=multiple&encode=url3986&category=".$categoryNum);
            array_push($_SESSION["trivia"], $response);
            $response = json_decode($response,true);
-           $result[$i]["question"] = $response["results"][0]["question"];
-           $result[$i]["choices"] = $response["results"][0]["incorrect_answers"];
-           array_push($result[$i]["choices"],$response["results"][0]["correct_answer"]);
+
+           if($_GET['lang']!=="en"){
+              $question = translateYandex($response["results"][0]["question"]);
+           }else{
+               $question= $response["results"][0]["question"];
+           }
+  
+           $result[$i]["question"] = $question;
+           if($_GET['lang']!=="en"){
+              $result[$i]["choices"] = array();
+             for($j=0;$j<count($response["results"][0]["incorrect_answers"]);$j++){ 
+
+                 array_push($result[$i]["choices"],translateYandex($response["results"][0]["incorrect_answers"][$j])); 
+             }
+              array_push($result[$i]["choices"],translateYandex($response["results"][0]["correct_answer"]));
+           }
+           else{
+            $result[$i]["choices"] = $response["results"][0]["incorrect_answers"];
+            array_push($result[$i]["choices"],$response["results"][0]["correct_answer"]);
+           }
            shuffle($result[$i]["choices"]);
            $result[$i]["category"] = $categoryName;
         }
         return json_encode($result);
    }
-   function translateYandex(){
-     $url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170117T100740Z.47998d3b7c7cf041.d2ad568069da066ac21c64c7ec4f74d251d46251&text=".$_GET['text']."&lang=".$_GET['lang']."&format=plain";
+
+   function translateYandex($t=""){
+
+     $url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170117T100740Z.47998d3b7c7cf041.d2ad568069da066ac21c64c7ec4f74d251d46251&text=".$t."&lang=".$_GET['lang']."&format=plain";
        $response = file_get_contents($url);
-        $response = json_decode($response);
+        $response = json_encode($response);
         return $response;
    }
    function checkTrivia(){

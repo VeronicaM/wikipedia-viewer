@@ -120,7 +120,6 @@ body{
 }
 .lock:hover{
   font-size: 80px;
-  color: #A36A16;
   cursor: pointer; cursor: hand;
 }
 .card-container h5{
@@ -153,8 +152,10 @@ body{
   100% { transform: rotate(360deg); }
 }
 .card-container form{
-     margin-left:25px;    
-     margin-right: 5px;
+    margin-left: 11px;
+    margin-top: 24px;
+    font-size: 16px;
+    width: 100%;
 }
 .final{
     position: relative;
@@ -204,7 +205,8 @@ body{
 
 .lock{
     font-size: 65px !important;
-    color: white;
+    color: rgba(65, 0, 0, 0.85);
+    padding-left: 70%;
 }
 #wikiInfo{
     overflow-x: hidden !important;

@@ -253,7 +253,7 @@ $(function ()
 	 		  animateWikiInfo();
 	 		  $('#wikiInfo').html('');
 	 		  $(".loader").toggleClass('show');
-	 		  $.getJSON("./functions.php?trivia=true&num=3", function(result){
+	 		  $.getJSON("./functions.php?trivia=true&num=3&lang="+lang, function(result){
 	 		  	$(".loader").toggleClass('show');
 		 	      var template = $("#randomResults").html();
 			      var compiledTemplate = Handlebars.compile(template);
@@ -261,7 +261,9 @@ $(function ()
 			       	      return {
 			       	         lang:lang,
 			       	         question:decodeURIComponent(result[i].question),
-			       	         choices:result[i].choices.map(function(i){return {id:(Math.random()*100),value:decodeURIComponent(i)}}),
+			       	         choices:result[i].choices.map(function(i){
+			       	         	   return {id:(Math.random()*100),value:decodeURIComponent(i)};
+			       	         	}),
 			       	         category: result[i].category
 			       	      };
 			       	 });
@@ -274,9 +276,11 @@ $(function ()
 			    	$('.lock').hover(function() {
 					   $(this).toggleClass("fa-unlock-alt");
 					});
-					$('.lock').on('click',function(e){
-						$(".overlay[data-answered='false']").removeClass("visible");
-						$(e.target).parent().toggleClass("visible");
+					$('.overlay').on('click',function(e){
+							$(".overlay[data-answered='false']").removeClass("visible");
+						$(this).toggleClass("visible");
+
+						//$(e.target).parent().toggleClass("visible");
 					})
 					$('#wikiInfo').on('click',function(e){
 						if(!$(e.target).closest("div").is(".card-container") && !$(e.target).closest("div").is(".overlay"))
@@ -298,12 +302,12 @@ $(function ()
 						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
 						      if(result=="correct"){
 						      	  var url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
-						          $(me.parentElement).html('<p class="final success translate">'+ answerInput.value +' is correct <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category+'</a></p>'); 
+						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' <i class="fa fa-check" aria-hidden="true"></i> <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category +'</a></p>'); 
 						      }
 						      else{
-						      	   $(me.parentElement).html('<p class="final wrong translate">Nope! The answer is <br> '+result+'</p>');	
+						      	   $(me.parentElement).html('<span class="final wrong">'+answerInput.value+'<i class="fa fa-times" style="padding:10px;" aria-hidden="true"></i></span>');	
 						      }
-						       translateText(".final");
+						      
 					      });	
 					    }
 			    			
