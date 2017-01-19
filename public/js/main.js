@@ -65,7 +65,7 @@ $(function ()
  				$('.languages a').removeClass('active');
  				 $(this).addClass("active");
  				 if(isRandom) {
- 				 	translateText(".translate");
+ 				 	getRandomWikis();
  				 }
  				 else if(searchTerm !==""){
  					getWikiInfo(searchTerm);
@@ -261,7 +261,7 @@ $(function ()
 			       	      return {
 			       	         lang:lang,
 			       	         question:decodeURIComponent(result[i].question),
-			       	         choices:result[i].choices.map(function(i){return decodeURIComponent(i)}),
+			       	         choices:result[i].choices.map(function(i){return {id:(Math.random()*100),value:decodeURIComponent(i)}}),
 			       	         category: result[i].category
 			       	      };
 			       	 });

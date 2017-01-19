@@ -5,7 +5,7 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <link rel="stylesheet" href="public/css/jquery-ui.min.css" type="text/css"/>
 	<link href="public/css/bootstrap.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="./public/css/main.min.css" type="text/css" />
+	<link rel="stylesheet" href="./public/css/main.css" type="text/css" />
 	<link href="public/css/sticky-footer.min.css" rel="stylesheet" />
 	<script src="https://use.fontawesome.com/8a123a7fda.js"></script>
 <script type="text/javascript">
@@ -123,8 +123,10 @@
 	   	    	     	</h5>
 						<form data-category={{category}}  data-triviaId="{{@index}}" action="">
 					    	{{#each choices}}
-							  <input  type="radio" name="answer" value="{{this}}"> 
-							  <span class="translate" data-value="{{this}}">{{this}}</span>
+
+							  <input id="id{{this.id}}" type="radio" name="answer" value="{{this.value}}"> 
+							  <span class="translate" data-value="{{this.value}}"><label for="id{{this.id}}"> {{this.value}}</label>
+							  </span>
 			   	              <br>
 							{{/each}}
 
@@ -148,7 +150,7 @@
    
       <script src="public/js/enquire.min.js"></script>
        <script src="public/js/turn.min.js"></script>
-      <script type="text/javascript" src="public/js/main.min.js"></script>
+      <script type="text/javascript" src="public/js/main.js"></script>
 </body>
 
 </html>
