@@ -1,10 +1,7 @@
 #refresh:hover{
    color: blue;
 }
-@font-face {
-  font-family: "Antique Book Cover";
-  src: url("../font/antique_book_cover/antique_book_cover.otf") format("opentype");
-}
+
 .input-group{
   width: 50%; 
 }
@@ -75,7 +72,7 @@ body{
   -webkit-background-size: cover;
   background-size: cover;
   background-repeat: none;
-  background-image: url('../images/wood-texture-min.png');
+  background-image: url('../images/wood-texture.png');
  }
 .languages{
       margin-top: -9px;
@@ -130,6 +127,7 @@ body{
   color:rgba(65, 0, 0, 0.85);
   margin-bottom: 10px;
   font-weight: 600;
+  font-size: 17px;
 }
 .loader {
     display: none;
@@ -203,8 +201,9 @@ body{
     border-radius: 13px;
 }
 
+
 .lock{
-    font-size: 65px;
+    font-size: 65px !important;
     color: white;
 }
 #wikiInfo{
@@ -223,11 +222,14 @@ body{
     align-items: flex-start;
   }
 .articleTitle{
-    margin-top: 13% !important;
-    font-size: 17px !important;
+    top: 20%;
+    display: inline;
+    font-size: 21px !important;
     font-family: cursive !important;
-    left: 16% !important;
-    margin-bottom: 10px !important;
+    left: 0% !important;
+    line-height: 1.95 !important;
+    padding-bottom: 4px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, #7C4A0F 2px, #7C4A0F 3px, rgba(0, 0, 0, 0) 3px);
 }
 
 .extract{
@@ -241,6 +243,24 @@ body{
     height: 64%;
     width: 97%;
     margin-top: 15px;
+    display: inline-block;
+}
+.firstE:first-letter {
+     font-size: 38px;
+    color: #520100;
+    line-height: 21px;
+    float: left;
+    padding-right: 4px;
+    padding-top: 10px;
+}
+.positionT{
+  padding-left: 10px;
+  text-align:center;
+  padding-top: 22px;
+}
+.linkT:hover{
+  text-decoration: none;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, #333333 2px, #333333 3px, rgba(0, 0, 0, 0) 3px) !important;
 }
 
 .cover{

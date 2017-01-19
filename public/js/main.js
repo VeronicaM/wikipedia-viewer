@@ -1,6 +1,6 @@
 $(function () 
  {
-     let lang="",
+     var lang="",
          prev_lang="",
 	     isRandom =false,
 	     searchTerm="",
@@ -40,9 +40,6 @@ $(function ()
 				       isRandom = false;
 				    }
 			});
-		
-		
-			//identify user preffered language
 			lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
 			if(languages.indexOf(lang) >=0){
 				$("#"+lang).addClass("active");
@@ -65,7 +62,7 @@ $(function ()
 			$(".languages li > a").click(function(e){
  				lang=e.currentTarget.id;
  				prev_lang=$('.languages a.active')[0].id;
- 				$('.languages a').removeClass('active')
+ 				$('.languages a').removeClass('active');
  				 $(this).addClass("active");
  				 if(isRandom) {
  				 	translateText(".translate");
@@ -77,7 +74,7 @@ $(function ()
 			});
   	
 			Handlebars.registerHelper('addShelf', function(a,opts) {
-				       let multiple = $(window).width() <1286 ? 1:2;
+				       var multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
 					    	  return opts.fn(this);
 						    else
@@ -90,7 +87,7 @@ $(function ()
 			    return new Handlebars.SafeString('<h4 class="shortTitle">' +string+ '</h4>');
 			});
 		    Handlebars.registerHelper('splitInPages', function(title,extract) {
-			      let base = '<div> <a href="https://'+lang+'.wikipedia.org/wiki/'+title+'" target="_blank"> <div><h4 class="articleTitle">'+title+'</h4></div></a>';
+			      var base = '<div> <a class="linkT" href="https://'+lang+'.wikipedia.org/wiki/'+title+'" target="_blank"> <div class="positionT"><h4 class="articleTitle">'+title+'</h4></div></a>';
 			      return  new Handlebars.SafeString(base+recursiveSplit(extract));
 			});
 		   Handlebars.registerHelper('getLang', function() {
@@ -99,21 +96,26 @@ $(function ()
 
 
             function recursiveSplit(text){
-            	let build="", splitted =text.split(" ");
+            	var build="", splitted =text.split(" ");
+            	var className ="extract";
             	if(splitted.length <=20){
-            		return '<div class="extract">'+text+'</div></div>';
+            		return '<div class="extract firstE">'+text+'</div></div>';
             	}
             	else {
-            		let i = 20;
-	            	for(let split =0; split <= splitted.length;split+=i){
+            		var i = 20;
+	            	for(var split =0; split <= splitted.length; split+=i){
 	            		if(split!==0)
 	            		{
 	            			build+="<div>";
 	            		}
-	            		build += '<div class="extract">'+splitted.slice(split,i).join(" ")+'</div></div>';
+	            		else{
+	            			className+=" firstE";
+	            		}
+	            		build += '<div class="'+className+'">'+splitted.slice(split,i).join(" ")+'</div></div>';
 	            		
-	            		if((i+40) < splitted.length)
+	            		if((i+40) < splitted.length){
 	            		   i +=20;
+	            		}
 	            		else{
 	            			return build += '<div></div><div><div class="extract">'+splitted.slice(i).join(" ")+'</div></div>';
 	            		}
@@ -139,8 +141,8 @@ $(function ()
 
 	  });
 	 function renderWiki(){
-	       let template = $("#searchResults").html();
-	      let compiledTemplate = Handlebars.compile(template);   
+	       var template = $("#searchResults").html();
+	      var compiledTemplate = Handlebars.compile(template);   
 	      $("#wikiInfo").html(compiledTemplate(searchItems));	 
 	 }
 	function reset(){
@@ -162,7 +164,7 @@ $(function ()
 	function displayWikiImg(flipper,page,me){
 			if(page==2){
 				closeBooks(flipper);
-				 let pageImg = me.querySelectorAll('img')[0]; 	
+				 var pageImg = me.querySelectorAll('img')[0]; 	
 				    	//set the loading image to appear
 				  if(pageImg.src.indexOf('#') >= 0) {
 				    me.querySelectorAll('img')[1].className="loading setVisible";
@@ -170,12 +172,10 @@ $(function ()
 				  else{
 						  me.querySelectorAll('img')[1].className="loading loaded";
 				  }
-
-		      //get the data-imageTitle value to query the image from wikipedia
-		       $.getJSON("./functions.php?img="+pageImg.dataset.imagetitle,function(result){
+		      $.getJSON("./functions.php?img="+pageImg.dataset.imagetitle,function(result){
 		       	
- 					let key = Object.keys(result.query.pages)[0];
- 					let source ="",orientation="appear landscape";
+ 					var key = Object.keys(result.query.pages)[0];
+ 					var source ="",orientation="appear landscape";
  					try{
  				       source = result.query.pages[key].imageinfo[0].thumburl;
  				       if(result.query.pages[key].imageinfo[0].height >result.query.pages[key].imageinfo[0].width ){
@@ -184,13 +184,9 @@ $(function ()
  					}catch(ex){
  						source = "public/images/cat.png";
  					}
- 					//set the source with the identified value
-						 pageImg.src=source;
-						 //set the loading image to disappear 
-						 me.querySelectorAll('img')[1].className="loading loaded";
-		    	
-						//set the class
- 				     pageImg.className= pageImg.className+" "+orientation;
+ 				  	 pageImg.src=source;
+					 me.querySelectorAll('img')[1].className="loading loaded";
+		    	     pageImg.className= pageImg.className+" "+orientation;
 				});	
 		}	
 	}
@@ -203,7 +199,7 @@ $(function ()
 				             {
 				             	when: {
 								turning: function(event, page, pageObject) {
-									let me= this;
+									var me= this;
 								    displayWikiImg(flipper,page,me);
 								  } 
 								},
@@ -236,7 +232,7 @@ $(function ()
 	}
 	function translateText(classString){
 		     $.each($(classString),function(key, value){
-		     	let text=value.innerHTML.trim();
+		     	var text=value.innerHTML.trim();
 		     	if(value.dataset.value){
 		     		text=value.dataset.value;	
 		     	}
@@ -259,18 +255,18 @@ $(function ()
 	 		  $(".loader").toggleClass('show');
 	 		  $.getJSON("./functions.php?trivia=true&num=3", function(result){
 	 		  	$(".loader").toggleClass('show');
-		 	      let template = $("#randomResults").html();
-			      let compiledTemplate = Handlebars.compile(template);
-			       let mockA = Array.apply(null, Array(3)).map(function (x, i) { 
+		 	      var template = $("#randomResults").html();
+			      var compiledTemplate = Handlebars.compile(template);
+			       var mockA = Array.apply(null, Array(3)).map(function (x, i) { 
 			       	      return {
 			       	         lang:lang,
 			       	         question:decodeURIComponent(result[i].question),
-			       	         choices:result[i].choices.map(i=>decodeURIComponent(i)),
+			       	         choices:result[i].choices.map(function(i){return decodeURIComponent(i)}),
 			       	         category: result[i].category
 			       	      };
 			       	 });
 			      
-			       let placeholder = {wikis:mockA};
+			       var placeholder = {wikis:mockA};
 			       $("#wikiInfo").html(compiledTemplate(placeholder));
 			       if(lang!="en"){
 			       	  translateText(".translate");
@@ -280,7 +276,7 @@ $(function ()
 					});
 					$('.lock').on('click',function(e){
 						$(".overlay[data-answered='false']").removeClass("visible");
-						$(e.target).parent().toggleClass("visible")
+						$(e.target).parent().toggleClass("visible");
 					})
 					$('#wikiInfo').on('click',function(e){
 						if(!$(e.target).closest("div").is(".card-container") && !$(e.target).closest("div").is(".overlay"))
@@ -292,8 +288,8 @@ $(function ()
 					
 			        $(".unlock").on('click',function(e){
 			        	e.preventDefault();
-			        	let answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0];
-			        	let me = this;
+			        	var answerInput = this.parentElement.querySelectorAll("input[name='answer']:checked")[0];
+			        	var me = this;
 			          if (!answerInput) {
 						       alert('Nothing is checked!');
 					   }
@@ -301,7 +297,7 @@ $(function ()
 					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid, function(result){
 						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
 						      if(result=="correct"){
-						      	  let url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
+						      	  var url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
 						          $(me.parentElement).html('<p class="final success translate">'+ answerInput.value +' is correct <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category+'</a></p>'); 
 						      }
 						      else{
