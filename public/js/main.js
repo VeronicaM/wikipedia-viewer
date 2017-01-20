@@ -299,7 +299,7 @@ $(function ()
 					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid+"&lang="+lang, function(result){
 						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
 						      if(result=="correct"){
-						      	  var url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
+						      	  var url = "https://en.wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
 						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' <i class="fa fa-check" aria-hidden="true"></i> <br> <a href="'+url+'" target="_blank"> Wiki '+me.parentElement.dataset.category +'</a></p>'); 
 						      }
 						      else{
