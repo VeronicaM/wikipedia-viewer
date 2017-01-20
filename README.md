@@ -1,11 +1,13 @@
 # wikipedia-viewer
 
 Search wikipedia in any of the 7 languages with the greatest number of articles published.
+<br/>
 ![Screenshot1](https://cloud.githubusercontent.com/assets/2241065/22150226/8f5f5b5a-df20-11e6-9b6d-7d389511525d.png) 
-
+<br/>
 and get a book like reading experience for an extract of each article.
+<br/>
 ![Screenshot2](https://cloud.githubusercontent.com/assets/2241065/22150206/7d50cde0-df20-11e6-96f6-ce33c0261138.png)
-
+<br/>
 In search for a trivia to have some fun ? Checkout the random wiki page game.
 
 ![Screenshot3](https://cloud.githubusercontent.com/assets/2241065/22150149/3132d872-df20-11e6-8639-4e6970b7d733.png)
