@@ -146,6 +146,7 @@ $(function ()
 	      $("#wikiInfo").html(compiledTemplate(searchItems));	 
 	 }
 	function reset(){
+		 $(".loader").removeClass('show');
 		 $("#wikiInfo").html("");
  		 $(".searchbox").val("");
  		 $(".searchInput").css("top","50%");
@@ -192,8 +193,6 @@ $(function ()
 	}
 
    function addEvents(){
-                 
-			        animateWikiInfo();
 			        $('[id^=flipper]').map(function(flipper){
 			             $("#flipper"+flipper).turn(
 				             {
@@ -212,7 +211,10 @@ $(function ()
 			        });
    }
 	function getWikiInfo(query){
+		     animateWikiInfo();       
+		     $(".loader").addClass('show'); 
 			$.getJSON("./functions.php?search="+query+"&lang="+lang, function(result){
+			    	$(".loader").removeClass('show');
 				    searchItems = result;
 				    $("#wikiInfo").animate({
 				          scrollTop: 0
@@ -252,9 +254,9 @@ $(function ()
 	 		  isRandom = true;
 	 		  animateWikiInfo();
 	 		  $('#wikiInfo').html('');
-	 		  $(".loader").toggleClass('show');
+	 		  $(".loader").addClass('show');
 	 		  $.getJSON("./functions.php?trivia=true&num=3&lang="+lang, function(result){
-	 		  	$(".loader").toggleClass('show');
+	 		  	$(".loader").removeClass('show');
 		 	      var template = $("#randomResults").html();
 			      var compiledTemplate = Handlebars.compile(template);
 			       var mockA = Array.apply(null, Array(3)).map(function (x, i) { 
