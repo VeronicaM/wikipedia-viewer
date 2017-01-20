@@ -16,8 +16,6 @@
         $_SESSION['trivia'] = array();
         $categories = array(10,17,18,19,20,22,23,27,30,31,32);
         $categories_names = array("Books","Scientists","Computers","Mathematics","Mythology","Geography","History","Animals","Electronics","Anime","Animation");
-         print_r(json_decode(translateYandex("test"),true));
-        print_r(json_decode(translateYandex("test"),true)[0]["code"]);
         $result = array();
         for($i=0;$i<$_GET["num"];$i++){
            $randomNum = rand(0,10);
@@ -56,17 +54,26 @@
 
      $url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170117T100740Z.47998d3b7c7cf041.d2ad568069da066ac21c64c7ec4f74d251d46251&text=".$t."&lang=".$_GET['lang']."&format=plain";
        $response = file_get_contents($url);
-        $response = json_encode($response);
+        $response = $response;
         return $response;
    }
    function checkTrivia(){
         $question = json_decode($_SESSION["trivia"][$_GET['triviaId']],true); 
-        $check = urldecode($question['results'][0]['correct_answer']) == $_GET['triviaAnswer']; 
+        $answer = urldecode($question['results'][0]['correct_answer']); 
+        $check = 0;
+        if($_GET['lang']!=="en"){
+              $answer = translateYandex($answer);
+            //  $ans = substr($_GET['triviaAnswer'],strpos($_GET['triviaAnswer'],'text'));
+              $check = strpos($answer,$_GET['triviaAnswer']) > 0; 
+        }
+        else{
+          $check = $answer == $_GET['triviaAnswer'];   
+        }
        if( $check == 1){
          return json_encode("correct");
        }
        else{
-         return json_encode(urldecode($question['results'][0]['correct_answer'])) ;
+         return json_encode("incorrect") ;
        } 
    }
    function getImageURL(){
@@ -85,9 +92,6 @@
     }
     else if(isset($_GET['checkTrivia'])){
       echo checkTrivia();
-    }
-    else if(isset($_GET['text'])){
-      echo json_encode(translateYandex());
     }
     else {
       echo json_encode(getWikiInfo());  

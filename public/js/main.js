@@ -72,7 +72,10 @@ $(function ()
  				 }
 
 			});
-  	
+  	    Handlebars.registerHelper('translationCredit', function(question,translated) {
+			      var base = '<a href="http://translate.yandex.com/" target="_blank">Powered by Yandex.Translate</a><br/>';
+			      return  translated? new Handlebars.SafeString(base+question):new Handlebars.SafeString(question);
+			});
 			Handlebars.registerHelper('addShelf', function(a,opts) {
 				       var multiple = $(window).width() <1286 ? 1:2;
 					    if(a % multiple ==0 && a!==0)
@@ -232,24 +235,6 @@ $(function ()
 	function isNumber(n) {
  	  return !isNaN(parseFloat(n)) && isFinite(n);
 	}
-	function translateText(classString){
-		     $.each($(classString),function(key, value){
-		     	var text=value.innerHTML.trim();
-		     	if(value.dataset.value){
-		     		text=value.dataset.value;	
-		     	}
-		     	if(!isNumber(text)){
-		     		$.getJSON("./functions.php?text="+encodeURIComponent(text)+"&lang=en-"+lang, function(result){
-					   if(value.dataset.isq=="true"){
-					   	 value.innerHTML = '<a href="http://translate.yandex.com/" target="_blank"> Powered by Yandex.Translate</a><br/>'+result.text[0]; 	
-					   }else{
-					   	  value.innerHTML = result.text[0];
-					   }
-				 	}
-				  );		
-		        }
-		     });
-	}
 	 function getRandomWikis(){
 	 		  isRandom = true;
 	 		  animateWikiInfo();
@@ -260,11 +245,27 @@ $(function ()
 		 	      var template = $("#randomResults").html();
 			      var compiledTemplate = Handlebars.compile(template);
 			       var mockA = Array.apply(null, Array(3)).map(function (x, i) { 
+			       			var question = "",valueQ = decodeURIComponent(result[i].question),translated = false;	
+			       	         	try{
+			       	         		question=JSON.parse(result[i].question)["text"][0];	
+			       	         		valueQ = question;
+			       	         		translated=true;
+			       	         	}catch(ex){
+			       	         		question = valueQ;
+			       	         	}
 			       	      return {
 			       	         lang:lang,
-			       	         question:decodeURIComponent(result[i].question),
+			       	         question:{show:question,value:valueQ,translated:translated},
 			       	         choices:result[i].choices.map(function(i){
-			       	         	   return {id:(Math.random()*100),value:decodeURIComponent(i)};
+			       	         	var choice = "",valueC=decodeURIComponent(i);
+			       	         	try{
+			       	         		choice=JSON.parse(i)["text"][0];
+			       	         		valueC = choice;	
+			       	         	}catch(ex){
+			       	         		choice = decodeURIComponent(i);
+			       	         	}
+
+			       	         	   return {id:(Math.random()*100),show:choice,value:valueC};
 			       	         	}),
 			       	         category: result[i].category
 			       	      };
@@ -272,17 +273,12 @@ $(function ()
 			      
 			       var placeholder = {wikis:mockA};
 			       $("#wikiInfo").html(compiledTemplate(placeholder));
-			       if(lang!="en"){
-			       	  translateText(".translate");
-			       }
 			    	$('.lock').hover(function() {
 					   $(this).toggleClass("fa-unlock-alt");
 					});
 					$('.overlay').on('click',function(e){
 							$(".overlay[data-answered='false']").removeClass("visible");
 						$(this).toggleClass("visible");
-
-						//$(e.target).parent().toggleClass("visible");
 					})
 					$('#wikiInfo').on('click',function(e){
 						if(!$(e.target).closest("div").is(".card-container") && !$(e.target).closest("div").is(".overlay"))
@@ -300,11 +296,11 @@ $(function ()
 						       alert('Nothing is checked!');
 					   }
 					   else {
-					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid, function(result){
+					   	  $.getJSON("./functions.php?checkTrivia=true&triviaAnswer="+answerInput.value+"&triviaId="+this.parentElement.dataset.triviaid+"&lang="+lang, function(result){
 						      me.parentElement.parentElement.querySelectorAll('.overlay')[0].dataset.answered = true;
 						      if(result=="correct"){
 						      	  var url = "https://"+lang+".wikipedia.org/wiki/Special:RandomInCategory/"+me.parentElement.dataset.category;
-						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' <i class="fa fa-check" aria-hidden="true"></i> <br> <a href="'+url+'" target="_blank"> See Wiki '+me.parentElement.dataset.category +'</a></p>'); 
+						          $(me.parentElement).html('<p class="final success">'+ answerInput.value +' <i class="fa fa-check" aria-hidden="true"></i> <br> <a href="'+url+'" target="_blank"> Wiki '+me.parentElement.dataset.category +'</a></p>'); 
 						      }
 						      else{
 						      	   $(me.parentElement).html('<span class="final wrong">'+answerInput.value+'<i class="fa fa-times" style="padding:10px;" aria-hidden="true"></i></span>');	
